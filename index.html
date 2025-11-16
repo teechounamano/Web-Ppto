@@ -1,0 +1,3338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Constructor modular de servicios de limpieza - Personaliza tu limpieza según tus necesidades">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png">
+    <title>Constructor de Limpieza - TeEchoUnaMano TUM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ================================================================
+           DISEÑO INNOVADOR - CONSTRUCTOR MODULAR DE LIMPIEZA
+           ================================================================ */
+
+        :root {
+            --primary: #1E3A8A;
+            --primary-light: #3B82F6;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --background: #F8FAFC;
+            --surface: #FFFFFF;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --border: #E2E8F0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background);
+            min-height: 100vh;
+            font-size: clamp(15px, 4vw, 17px);
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* === HEADER MEJORADO === */
+        header {
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            padding: 12px 0;
+            margin-bottom: 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .logo-img {
+            width: clamp(44px, 12vw, 56px);
+            height: clamp(44px, 12vw, 56px);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .logo-text h1 {
+            font-size: clamp(0.9rem, 3.5vw, 1.5rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .logo-text p {
+            font-size: clamp(10px, 2.5vw, 15px);
+            color: var(--text-light);
+            margin: 0;
+            font-weight: 500;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .header-link {
+            background: var(--primary);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s ease;
+            border: none;
+            font-size: clamp(12px, 3vw, 15px);
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .header-link:hover {
+            background: var(--primary-light);
+        }
+
+        /* === HERO SECTION === */
+        .hero-section {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-title {
+            font-size: clamp(1.75rem, 6vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* === CONSTRUCTOR MODULAR === */
+        .constructor-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .constructor-container {
+                grid-template-columns: 1fr 400px;
+            }
+        }
+
+        .modules-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .summary-section {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        /* === MÓDULOS DE SERVICIOS === */
+        .service-module {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+        }
+
+        .service-module:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .service-module.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .service-module.disabled {
+            opacity: 0.6;
+            background: #f9fafb;
+            border-color: #e5e7eb;
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            gap: 0.75rem;
+        }
+
+        .module-title-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .module-icon {
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--background);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .module-subtotal {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            min-width: 60px;
+            text-align: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .service-module:not(.active) .module-subtotal {
+            background: var(--secondary);
+        }
+
+        /* CORRECCIÓN: Cuando el módulo está desactivado, mantener el texto legible */
+        .service-module.disabled .module-subtotal {
+            background: var(--text-light);
+            color: white;
+            opacity: 0.7;
+        }
+
+        .module-subtotal.zero {
+            background: var(--text-light);
+        }
+
+        .module-toggle {
+            width: 60px;
+            height: 32px;
+            background: var(--border);
+            border-radius: 16px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .module-toggle.active {
+            background: var(--primary);
+        }
+
+        .module-toggle::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            top: 4px;
+            left: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-toggle.active::after {
+            left: 32px;
+        }
+
+        .module-content {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .service-module.active .module-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === OPCIONES DE MÓDULOS === */
+        .module-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-option {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .module-option:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .module-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .price-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+            background: white;
+            color: var(--text);
+        }
+
+        .module-option.selected .price-input {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .price-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .module-option.selected .price-input:focus {
+            border-color: white;
+        }
+
+        .price-symbol {
+            font-weight: 700;
+            color: inherit;
+        }
+
+        /* === CONTROLES DE CANTIDAD ESPECIALES === */
+        .quantity-controls-special {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quantity-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            gap: 1rem;
+        }
+
+        .quantity-item-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .quantity-item-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .quantity-item-name {
+            font-weight: 600;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--background);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quantity-display {
+            font-size: 1.25rem;
+            font-weight: 700;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .quantity-price-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .quantity-price-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+            background: white;
+        }
+
+        .quantity-price-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* === SUB-SECCIONES PARA CRISTALES === */
+        .cristales-subsection {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+            border: 2px solid var(--border);
+        }
+
+        .cristales-subsection-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* === RESUMEN DE PEDIDO === */
+        .order-summary {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .summary-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 0.5rem;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item-name {
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+
+        .summary-item-price {
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-top: 2px solid var(--border);
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text);
+            gap: 0.5rem;
+        }
+
+        .summary-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .summary-btn {
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background: var(--background);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        /* === SECCIÓN DE COMPAÑEROS === */
+        .roommates-section {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-top: 1.5rem;
+        }
+
+        .roommates-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .roommates-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .roommates-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+        }
+
+        .cost-per-person {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* === FORMULARIO DE CLIENTE MEJORADO - NUEVO DISEÑO === */
+        .form-section {
+            display: none;
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+            /* Añadir espacio adicional en la parte inferior para el carrito */
+            padding-bottom: 100px !important;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* === TARJETAS DE FORMULARIO - NUEVO DISEÑO === */
+        .form-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: clamp(12px, 3vw, 20px);
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-card-header {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2.5vw, 12px);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #F1F5F9;
+        }
+
+        .form-card-icon {
+            width: clamp(32px, 8vw, 40px);
+            height: clamp(32px, 8vw, 40px);
+            background: #EFF6FF;
+            color: #1E3A8A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(16px, 4vw, 20px);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .form-card-title {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            font-weight: 700;
+            color: #1E293B;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .form-input-wrapper {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .form-input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: clamp(14px, 3.5vw, 18px);
+            color: #64748B;
+            pointer-events: none;
+        }
+
+        .form-input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .date-selector {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            padding: clamp(10px, 2.5vw, 14px);
+        }
+
+        .date-selector-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: clamp(13px, 3vw, 15px);
+            font-weight: 700;
+            color: #1E293B;
+            margin-bottom: 8px;
+        }
+
+        .date-selector input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #E2E8F0;
+            border-radius: 6px;
+            font-size: clamp(14px, 3.5vw, 16px);
+            font-family: inherit;
+            color: #1E293B;
+            background: #F8FAFC;
+            transition: all 0.2s ease;
+        }
+
+        .date-selector input[type="date"]:focus {
+            outline: none;
+            border-color: #1E3A8A;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .form-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 20px);
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: clamp(14px, 3.5vw, 16px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+        }
+
+        .form-btn-back {
+            background: white;
+            color: #475569;
+            border: 2px solid #E2E8F0;
+        }
+
+        .form-btn-back:hover {
+            background: #F8FAFC;
+            border-color: #CBD5E1;
+        }
+
+        .form-btn-submit {
+            background: #1E3A8A;
+            color: white;
+        }
+
+        .form-btn-submit:hover {
+            background: #1E40AF;
+        }
+
+        .security-banner {
+            background: #EFF6FF;
+            border: 2px solid #BFDBFE;
+            border-radius: 8px;
+            padding: clamp(8px, 2vw, 12px);
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 2vw, 10px);
+            margin-bottom: 16px;
+        }
+
+        .security-banner-icon {
+            font-size: clamp(18px, 4.5vw, 24px);
+            flex-shrink: 0;
+        }
+
+        .security-banner-content h4 {
+            font-size: clamp(12px, 3vw, 14px);
+            font-weight: 700;
+            color: #1E3A8A;
+            margin: 0 0 4px 0;
+        }
+
+        .security-banner-content p {
+            font-size: clamp(10px, 2.5vw, 12px);
+            color: #64748B;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .info-banner {
+            background: #FEF3C7;
+            border: 2px solid #FCD34D;
+            border-radius: 8px;
+            padding: clamp(8px, 2vw, 12px);
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 2vw, 10px);
+            margin-top: 12px;
+        }
+
+        .info-banner-icon {
+            font-size: clamp(18px, 4.5vw, 24px);
+            flex-shrink: 0;
+        }
+
+        .info-banner-content h4 {
+            font-size: clamp(12px, 3vw, 14px);
+            font-weight: 700;
+            color: #92400E;
+            margin: 0 0 4px 0;
+        }
+
+        .info-banner-content p {
+            font-size: clamp(10px, 2.5vw, 12px);
+            color: #78350F;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* === CONFIRMACIÓN DE ENVÍO === */
+        .confirmation-section {
+            display: none;
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .confirmation-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .confirmation-message {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        /* === MODAL FINAL - NUEVO DISEÑO === */
+        .final-summary-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.2s ease;
+            padding: 12px;
+        }
+
+        .final-summary-modal.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .final-summary-content {
+            background: white;
+            border-radius: 8px;
+            padding: clamp(14px, 4vw, 24px);
+            width: 100%;
+            max-width: 600px;
+            max-height: 92vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .summary-header h2 {
+            font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+            font-weight: 800;
+            color: #1E3A8A;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .summary-header p {
+            color: #64748B;
+            font-size: clamp(12px, 3vw, 14px);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .summary-section {
+            background: #F8FAFC;
+            border-radius: 6px;
+            padding: clamp(10px, 2.5vw, 14px);
+            margin-bottom: 10px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .summary-section-title {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1.5vw, 10px);
+            font-size: clamp(13px, 3.5vw, 16px);
+            font-weight: 700;
+            color: #1E293B;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #E2E8F0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 8px;
+            border-radius: 6px;
+            flex-wrap: wrap;
+        }
+
+        .summary-section-title:hover {
+            background: #F1F5F9;
+        }
+
+        .summary-section-title .edit-icon {
+            margin-left: auto;
+            font-size: clamp(12px, 3vw, 14px);
+            color: #64748B;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .summary-section-title:hover .edit-icon {
+            opacity: 1;
+        }
+
+        .edit-icon-text {
+            font-size: clamp(10px, 2.5vw, 12px);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #E2E8F0;
+            gap: 0.5rem;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item-label {
+            font-size: clamp(12px, 3vw, 14px);
+            color: #64748B;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .summary-item-value {
+            font-size: clamp(13px, 3.5vw, 15px);
+            color: #1E293B;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .activation-fee-highlight {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+            border-radius: 6px;
+            padding: clamp(10px, 2.5vw, 14px);
+            margin-bottom: 10px;
+        }
+
+        .activation-fee-highlight .summary-item-label,
+        .activation-fee-highlight .summary-item-value {
+            color: #92400E;
+            font-weight: 800;
+        }
+
+        .summary-total {
+            background: #F8FAFC;
+            border: 2px solid #E2E8F0;
+            border-radius: 6px;
+            padding: clamp(12px, 3vw, 16px);
+            margin-top: 14px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .summary-total-label {
+            font-size: clamp(9px, 2.2vw, 11px);
+            font-weight: 700;
+            color: #64748B;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .summary-total-value {
+            font-size: clamp(1.5rem, 6vw, 2rem);
+            font-weight: 900;
+            color: #1E3A8A;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .summary-total-per-person {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: clamp(12px, 3vw, 14px);
+            color: #1E40AF;
+            margin-top: 10px;
+        }
+
+        .summary-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .summary-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 18px);
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: clamp(13px, 3vw, 15px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 44px;
+        }
+
+        .summary-btn-cancel {
+            background: #F1F5F9;
+            color: #475569;
+            border: 2px solid #E2E8F0;
+        }
+
+        .summary-btn-cancel:hover {
+            background: #E2E8F0;
+        }
+
+        .summary-btn-send {
+            background: #10B981;
+            color: white;
+        }
+
+        .summary-btn-send:hover {
+            background: #059669;
+        }
+
+        /* === MEJORAS ESPECÍFICAS PARA LOS PROBLEMAS MENCIONADOS === */
+        
+        /* 1. Ajuste del solicitante - iconos y descripciones mejor espaciados */
+        .form-card-header {
+            align-items: flex-start;
+        }
+        
+        .form-card-title {
+            margin-top: 4px;
+        }
+        
+        /* 2. Texto descriptivo que se oculta automáticamente */
+        .module-description {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-module:not(.active) .module-description {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        /* 3. Mejoras en las fechas */
+        .date-selector input[type="date"] {
+            min-height: 44px;
+        }
+        
+        /* 4. Ajuste del tamaño del total */
+        .summary-total-value {
+            font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+        }
+        
+        /* 5. Mejor espaciado general */
+        .service-module {
+            padding: 1.25rem;
+        }
+        
+        .module-options {
+            gap: 0.75rem;
+        }
+        
+        .module-option {
+            padding: 0.75rem;
+        }
+        
+        /* 6. Mejoras de responsividad móvil */
+        @media (max-width: 768px) {
+            .module-options {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .quantity-item {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .quantity-controls {
+                justify-content: center;
+            }
+            
+            .quantity-price-container {
+                justify-content: center;
+                margin-left: 0;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Añadir más espacio en móviles para el carrito */
+            .form-section.active {
+                padding-bottom: 120px !important;
+            }
+            
+            /* Mejoras específicas para móviles */
+            .module-header {
+                flex-wrap: wrap;
+            }
+            
+            .module-title-container {
+                flex-wrap: wrap;
+            }
+            
+            .module-title {
+                font-size: 1.1rem;
+            }
+            
+            .module-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+            
+            .module-subtotal {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .module-toggle {
+                width: 50px;
+                height: 28px;
+            }
+            
+            .module-toggle::after {
+                width: 20px;
+                height: 20px;
+                top: 4px;
+                left: 4px;
+            }
+            
+            .module-toggle.active::after {
+                left: 26px;
+            }
+            
+            .service-module {
+                padding: 1rem;
+            }
+            
+            .quantity-item {
+                padding: 0.75rem;
+            }
+            
+            .quantity-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .quantity-display {
+                font-size: 1.1rem;
+            }
+            
+            .quantity-price-input {
+                width: 70px;
+            }
+            
+            .form-card {
+                padding: 1rem;
+            }
+            
+            .form-input-wrapper {
+                margin-bottom: 10px;
+            }
+            
+            .form-input-icon {
+                left: 10px;
+            }
+            
+            .form-input {
+                padding-left: 40px !important;
+            }
+        }
+
+        /* === ANIMACIONES === */
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* === ESTILOS ADICIONALES PARA MEJORAR LA EXPERIENCIA === */
+        
+        .error-message {
+            color: #EF4444;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .form-input.error {
+            border-color: #EF4444;
+        }
+        
+        .modal-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748B;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-close-btn:hover {
+            background: #F1F5F9;
+            color: #1E293B;
+        }
+        
+        /* REMOVER EL RESUMEN DEL FORMULARIO DEL SOLICITANTE */
+        .order-summary-form {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png" alt="TeEchoUnaMano Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>TeEchoUnaMano TUM</h1>
+                        <p>Servicios de Limpieza Profesional</p>
+                    </div>
+                </div>
+                <a href="https://tumgo.blogspot.com/" target="_blank" rel="noopener noreferrer" class="header-link">
+                    TUMgo Accesos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Presupuesto TUM </h1>
+            <!-- <p class="hero-subtitle">Selecciona solo los servicios que necesitas y personaliza sus precios</p>-->
+        </section>
+
+        <!-- Constructor Modular -->
+        <section class="constructor-container">
+            <div class="modules-section">
+                <!-- Módulo de Áreas Principales -->
+                <div class="service-module active" id="areas-module">
+                    <div class="module-header">
+                        <div class="module-title-container">
+                            <div class="module-title">
+                                <div class="module-icon">🏠</div>
+                                <span>Áreas Principales</span>
+                            </div>
+                            <div class="module-subtotal" id="areas-subtotal">0€</div>
+                        </div>
+                        <div class="module-toggle active" id="areas-toggle"></div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">Selecciona las áreas de tu hogar que necesitan limpieza y establece tu precio</p>
+                        <div class="module-options">
+                            <div class="module-option" data-service="salon">
+                                <div class="option-name">🛋️ Salón</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="salon-price" value="10" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="cocina">
+                                <div class="option-name">🍳 Cocina</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="cocina-price" value="10" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controles especiales para baños y habitaciones -->
+                        <div class="quantity-controls-special">
+                            <div class="quantity-item">
+                                <div class="quantity-item-info">
+                                    <span class="quantity-item-icon">🚿</span>
+                                    <span class="quantity-item-name">Baños</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" id="bano-decrement">-</button>
+                                    <span class="quantity-display" id="bano-count">0</span>
+                                    <button class="quantity-btn" id="bano-increment">+</button>
+                                </div>
+                                <div class="quantity-price-container">
+                                    <input type="number" class="quantity-price-input" id="bano-price" value="10" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+
+                            <div class="quantity-item">
+                                <div class="quantity-item-info">
+                                    <span class="quantity-item-icon">🛏️</span>
+                                    <span class="quantity-item-name">Habitaciones</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" id="habitacion-decrement">-</button>
+                                    <span class="quantity-display" id="habitacion-count">0</span>
+                                    <button class="quantity-btn" id="habitacion-increment">+</button>
+                                </div>
+                                <div class="quantity-price-container">
+                                    <input type="number" class="quantity-price-input" id="habitacion-price" value="10" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo de Complementos -->
+                <div class="service-module" id="complements-module">
+                    <div class="module-header">
+                        <div class="module-title-container">
+                            <div class="module-title">
+                                <div class="module-icon">✨</div>
+                                <span>Complementos</span>
+                            </div>
+                            <div class="module-subtotal" id="complements-subtotal">0€</div>
+                        </div>
+                        <div class="module-toggle active" id="complements-toggle"></div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">Añade servicios adicionales para una limpieza más completa</p>
+                        <div class="module-options">
+                            <div class="module-option" data-service="pasillo">
+                                <div class="option-name">🚪 Pasillo</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="pasillo-price" value="5" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="platos">
+                                <div class="option-name">🍽️ Fregar Platos</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="platos-price" value="5" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="mamparas">
+                                <div class="option-name">🪟 Mamparas</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="mamparas-price" value="5" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="basura">
+                                <div class="option-name">🗑️ Basura</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="basura-price" value="5" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo de Electrodomésticos -->
+                <div class="service-module" id="electrodomesticos-module">
+                    <div class="module-header">
+                        <div class="module-title-container">
+                            <div class="module-title">
+                                <div class="module-icon">🔌</div>
+                                <span>Electrodomésticos</span>
+                            </div>
+                            <div class="module-subtotal" id="electrodomesticos-subtotal">0€</div>
+                        </div>
+                        <div class="module-toggle active" id="electrodomesticos-toggle"></div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">Limpieza profunda de electrodomésticos - Establece tu precio para cada uno</p>
+                        <div class="module-options">
+                            <div class="module-option" data-service="horno">
+                                <div class="option-name">🔥 Horno</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="horno-price" value="20" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="nevera">
+                                <div class="option-name">❄️ Nevera</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="nevera-price" value="20" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="campana">
+                                <div class="option-name">💨 Campana Cocina</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="campana-price" value="20" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo de Cristales -->
+                <div class="service-module" id="windows-module">
+                    <div class="module-header">
+                        <div class="module-title-container">
+                            <div class="module-title">
+                                <div class="module-icon">🪟</div>
+                                <span>Limpieza de Cristales</span>
+                            </div>
+                            <div class="module-subtotal" id="windows-subtotal">0€</div>
+                        </div>
+                        <div class="module-toggle active" id="windows-toggle"></div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">Selecciona las ventanas que necesitan limpieza y establece tu precio</p>
+                        
+                        <!-- Cristales para áreas principales -->
+                        <div class="cristales-subsection">
+                            <h4 class="cristales-subsection-title">🛋️ Cristales de Áreas Principales</h4>
+                            <div class="quantity-controls-special">
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🛋️</span>
+                                        <span class="quantity-item-name">Cristales Salón</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-salon-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-salon-count">0</span>
+                                        <button class="quantity-btn" id="cristal-salon-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-salon-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🍳</span>
+                                        <span class="quantity-item-name">Cristales Cocina</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-cocina-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-cocina-count">0</span>
+                                        <button class="quantity-btn" id="cristal-cocina-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-cocina-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🚿</span>
+                                        <span class="quantity-item-name">Cristales Baño</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-bano-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-bano-count">0</span>
+                                        <button class="quantity-btn" id="cristal-bano-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-bano-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🛏️</span>
+                                        <span class="quantity-item-name">Cristales Habitación</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-habitacion-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-habitacion-count">0</span>
+                                        <button class="quantity-btn" id="cristal-habitacion-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-habitacion-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cristales para terrazas y lavandería -->
+                        <div class="cristales-subsection">
+                            <h4 class="cristales-subsection-title">⭐ Cristales de Servicios Especiales</h4>
+                            <div class="quantity-controls-special">
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">☀️</span>
+                                        <span class="quantity-item-name">Cristales Terraza</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-terraza-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-terraza-count">0</span>
+                                        <button class="quantity-btn" id="cristal-terraza-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-terraza-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🧺</span>
+                                        <span class="quantity-item-name">Cristales Lavandería</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-lavanderia-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-lavanderia-count">0</span>
+                                        <button class="quantity-btn" id="cristal-lavanderia-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-lavanderia-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nuevos items para cristales - Balconeras y Escaparates -->
+                        <div class="cristales-subsection">
+                            <h4 class="cristales-subsection-title">🪟 Cristales Especiales</h4>
+                            <div class="quantity-controls-special">
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🏙️</span>
+                                        <span class="quantity-item-name">Balconeras</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-balconeras-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-balconeras-count">0</span>
+                                        <button class="quantity-btn" id="cristal-balconeras-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-balconeras-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🛍️</span>
+                                        <span class="quantity-item-name">Escaparates</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-escaparates-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-escaparates-count">0</span>
+                                        <button class="quantity-btn" id="cristal-escaparates-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-escaparates-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo de Servicios Especiales -->
+                <div class="service-module" id="special-module">
+                    <div class="module-header">
+                        <div class="module-title-container">
+                            <div class="module-title">
+                                <div class="module-icon">⭐</div>
+                                <span>Servicios Especiales</span>
+                            </div>
+                            <div class="module-subtotal" id="special-subtotal">0€</div>
+                        </div>
+                        <div class="module-toggle active" id="special-toggle"></div>
+                    </div>
+                    <div class="module-content">
+                        <p class="module-description">Servicios adicionales para necesidades específicas</p>
+                        <div class="module-options">
+                            <div class="module-option" data-service="escalera">
+                                <div class="option-name">🪜 Escalera</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="escalera-price" value="10" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="terraza">
+                                <div class="option-name">☀️ Terraza</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="terraza-price" value="15" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="lavanderia">
+                                <div class="option-name">🧺 Lavandería</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="lavanderia-price" value="12" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                            <div class="module-option" data-service="organizacion">
+                                <div class="option-name">📦 Organización</div>
+                                <div class="price-input-container">
+                                    <input type="number" class="price-input" id="organizacion-price" value="20" min="0" step="0.5">
+                                    <span class="price-symbol">€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen del Pedido -->
+            <div class="summary-section">
+                <div class="order-summary">
+                    <h2 class="summary-title">Tu Pedido</h2>
+                    <div class="summary-items" id="summary-items">
+                        <div class="summary-item">
+                            <span class="summary-item-name">Cuota de Activación</span>
+                            <span class="summary-item-price">10€</span>
+                        </div>
+                        <!-- Los elementos del pedido se añadirán aquí dinámicamente -->
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="total-cost">10€</span>
+                    </div>
+                    <div class="summary-actions">
+                        <button class="summary-btn btn-primary pulse" id="proceed-to-form">
+                            Continuar con mis datos
+                        </button>
+                        <button class="summary-btn btn-secondary" id="reset-order">
+                            Reiniciar pedido
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sección de Compañeros -->
+                <div class="roommates-section">
+                    <h3 class="roommates-title">👥 ¿Cuántos sois en el piso?</h3>
+                    <div class="roommates-controls">
+                        <button class="quantity-btn" id="roommates-decrement">-</button>
+                        <span class="quantity-display" id="roommates-count">1</span>
+                        <button class="quantity-btn" id="roommates-increment">+</button>
+                    </div>
+                    <div class="roommates-info">
+                        <div>Coste por persona:</div>
+                        <div class="cost-per-person" id="cost-per-person">10€</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario de Cliente - SOLO DATOS PERSONALES -->
+        <section class="form-section" id="client-form-section">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-3xl shadow-2xl mb-6 text-4xl">
+                    📋
+                </div>
+                <h2 class="form-title">Datos del Solicitante</h2>
+                <p class="text-gray-700 text-base max-w-2xl mx-auto font-medium">Completa tu información para procesar la solicitud de limpieza</p>
+            </div>
+
+            <!-- Banner de seguridad para tranquilizar al usuario -->
+            <div class="security-banner">
+                <div class="security-banner-icon">🔒</div>
+                <div class="security-banner-content">
+                    <h4>Tus datos están seguros</h4>
+                    <p>Toda tu información está protegida y solo se usa para coordinar tu servicio de limpieza.</p>
+                </div>
+            </div>
+            
+            <form id="client-form">
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon">👤</div>
+                        <h3 class="form-card-title">Información Personal</h3>
+                    </div>
+                    
+                    <div class="form-input-wrapper">
+                        <div class="form-input-icon">✍️</div>
+                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" required style="padding-left: 40px;">
+                        <div class="error-message" id="errorNombre">Por favor, ingresa tu nombre completo</div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon">🏠</div>
+                        <h3 class="form-card-title">Dirección del Servicio</h3>
+                    </div>
+                    
+                    <div class="form-input-wrapper">
+                        <div class="form-input-icon">📍</div>
+                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)" required style="padding-left: 40px;">
+                        <div class="error-message" id="errorCalle">Por favor, ingresa la calle y número</div>
+                    </div>
+
+                    <div class="form-input-group">
+                        <div class="form-input-wrapper">
+                            <div class="form-input-icon">🚪</div>
+                            <input type="text" id="portal" class="form-input" placeholder="Portal" required style="padding-left: 40px;">
+                            <div class="error-message" id="errorPortal">Requerido</div>
+                        </div>
+
+                        <div class="form-input-wrapper">
+                            <div class="form-input-icon">🔢</div>
+                            <input type="text" id="piso" class="form-input" placeholder="Piso" required style="padding-left: 40px;">
+                            <div class="error-message" id="errorPiso">Requerido</div>
+                        </div>
+
+                        <div class="form-input-wrapper">
+                            <div class="form-input-icon">🚪</div>
+                            <input type="text" id="puerta" class="form-input" placeholder="Puerta" required style="padding-left: 40px;">
+                            <div class="error-message" id="errorPuerta">Requerido</div>
+                        </div>
+                    </div>
+
+                    <div class="info-banner">
+                        <div class="info-banner-icon">ℹ️</div>
+                        <div class="info-banner-content">
+                            <h4>Valencia capital</h4>
+                            <p>La visita es <strong>gratuita y sin compromiso</strong>. Nos desplazamos a tu domicilio para evaluar el servicio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon">📅</div>
+                        <h3 class="form-card-title">Fechas Disponibles</h3>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm mb-4 font-medium">Opciones de fecha para coordinar la visita.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="date-selector">
+                            <div class="date-selector-label">
+                                <span>📆</span>
+                                <span>Primera opción</span>
+                            </div>
+                            <input type="date" id="fecha1" required>
+                            <div class="error-message" id="errorFecha1">Selecciona la primera fecha</div>
+                        </div>
+
+                        <div class="date-selector">
+                            <div class="date-selector-label">
+                                <span>📆</span>
+                                <span>Segunda opción</span>
+                            </div>
+                            <input type="date" id="fecha2" required>
+                            <div class="error-message" id="errorFecha2">Selecciona la segunda fecha</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="back-to-constructor" class="form-btn form-btn-back">
+                        <span>←</span>
+                        <span>Volver al constructor</span>
+                    </button>
+                    <button type="submit" class="form-btn form-btn-submit">
+                        <span>Ver Resumen Completo</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Sección de Confirmación -->
+        <section class="confirmation-section" id="confirmation-section">
+            <div class="confirmation-icon">✅</div>
+            <h2 class="confirmation-title">¡Solicitud Enviada con Éxito!</h2>
+            <p class="confirmation-message">
+                Tu presupuesto ha sido enviado a nuestro equipo por WhatsApp.<br>
+                Nos pondremos en contacto contigo en breve para confirmar los detalles.
+            </p>
+            <button class="summary-btn btn-primary" id="new-order">
+                Realizar otro Ppto.
+            </button>
+        </section>
+    </main>
+
+    <!-- Modal de resumen final con cuota de activación y código de referido destacados -->
+    <div id="final-summary-modal" class="final-summary-modal">
+        <div class="final-summary-content">
+            <!-- Añadiendo botón X sutil para cerrar el modal de resumen final -->
+            <div class="flex justify-between items-start mb-4">
+                <div class="summary-header" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none; text-align: left; flex: 1;">
+                    <h2>✨ Resumen de tu Solicitud</h2>
+                    <p>Revisa todos los detalles antes de enviar</p>
+                </div>
+                <button onclick="document.getElementById('final-summary-modal').classList.remove('open')" class="modal-close-btn" aria-label="Cerrar" style="flex-shrink: 0; margin-left: 1rem;">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Banner de seguridad en el resumen final -->
+            <div class="security-banner" style="margin-bottom: 1.5rem;">
+                <div class="security-banner-icon">🔒</div>
+                <div class="security-banner-content">
+                    <h4>Información protegida</h4>
+                    <p>Tus datos están seguros con nosotros</p>
+                </div>
+            </div>
+
+            <!-- Sección de servicios con icono de edición interactivo -->
+            <div class="summary-section">
+                <div class="summary-section-title" onclick="editSection('services')" role="button" tabindex="0">
+                    <span>🧹</span>
+                    <span>Servicios Seleccionados</span>
+                    <div class="edit-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span class="edit-icon-text">Editar</span>
+                    </div>
+                </div>
+                <div id="final-services-list"></div>
+            </div>
+
+            <!-- Cuota de activación destacada con gradiente dorado -->
+            <div class="activation-fee-highlight">
+                <div class="summary-item">
+                    <span class="summary-item-label">💳 Cuota de Activación</span>
+                    <span class="summary-item-value" id="final-activation-fee">10 €</span>
+                </div>
+            </div>
+
+            <!-- Sección de datos del cliente con icono de edición interactivo -->
+            <div class="summary-section">
+                <div class="summary-section-title" onclick="editSection('client-data')" role="button" tabindex="0">
+                    <span>👤</span>
+                    <span>Datos del Cliente</span>
+                    <div class="edit-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span class="edit-icon-text">Editar</span>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-item-label">Nombre</span>
+                    <span class="summary-item-value" id="final-nombre">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-item-label">Dirección</span>
+                    <span class="summary-item-value" id="final-direccion">-</span>
+                </div>
+            </div>
+
+            <!-- Sección de fechas con icono de edición interactivo -->
+            <div class="summary-section">
+                <div class="summary-section-title" onclick="editSection('dates')" role="button" tabindex="0">
+                    <span>📅</span>
+                    <span>Fechas Disponibles</span>
+                    <div class="edit-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        <span class="edit-icon-text">Editar</span>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-item-label">Primera opción</span>
+                    <span class="summary-item-value" id="final-fecha1">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-item-label">Segunda opción</span>
+                    <span class="summary-item-value" id="final-fecha2">-</span>
+                </div>
+            </div>
+
+            <div class="summary-total">
+                <div class="summary-total-label">Total Servicio</div>
+                <div class="summary-total-value" id="final-total-cost">0 €</div>
+                <div class="summary-total-per-person">
+                    <span id="final-cost-per-person">0,00 €</span> por persona (<span id="final-roommates-count">1</span> u.<span id="final-roommates-plural">s</span>)
+                </div>
+            </div>
+
+            <div class="summary-actions">
+                <button type="button" id="cancel-final-summary-btn" class="summary-btn summary-btn-cancel">
+                    <span>✕</span>
+                    <span>Cancelar</span>
+                </button>
+                <button type="button" id="send-whatsapp-btn" class="summary-btn summary-btn-send">
+                    <span>📱</span>
+                    <span>Enviar a WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado de la aplicación
+        const state = {
+            activationFee: 10,
+            selectedServices: {},
+            roommatesCount: 1,
+            totalCost: 10,
+            costPerPerson: 10,
+            banoCount: 0,
+            habitacionCount: 0,
+            cristalSalonCount: 0,
+            cristalCocinaCount: 0,
+            cristalBanoCount: 0,
+            cristalHabitacionCount: 0,
+            cristalTerrazaCount: 0,
+            cristalLavanderiaCount: 0,
+            cristalBalconerasCount: 0,
+            cristalEscaparatesCount: 0,
+            customPrices: {
+                salon: 10,
+                cocina: 10,
+                bano: 10,
+                habitacion: 10,
+                pasillo: 5,
+                platos: 5,
+                mamparas: 5,
+                basura: 5,
+                horno: 20,
+                nevera: 20,
+                campana: 20,
+                escalera: 10,
+                terraza: 15,
+                lavanderia: 12,
+                organizacion: 20,
+                'cristal-salon': 10,
+                'cristal-cocina': 10,
+                'cristal-bano': 10,
+                'cristal-habitacion': 10,
+                'cristal-terraza': 10,
+                'cristal-lavanderia': 10,
+                'cristal-balconeras': 10,
+                'cristal-escaparates': 10
+            },
+            // Nuevo estado para controlar qué categorías están activas
+            activeCategories: {
+                areas: true,
+                complements: true,
+                electrodomesticos: true,
+                windows: true,
+                special: true
+            }
+        };
+
+        // Elementos del DOM
+        const modules = document.querySelectorAll('.service-module');
+        const toggles = document.querySelectorAll('.module-toggle');
+        const options = document.querySelectorAll('.module-option');
+        const summaryItems = document.getElementById('summary-items');
+        const totalCostDisplay = document.getElementById('total-cost');
+        const costPerPersonDisplay = document.getElementById('cost-per-person');
+        const roommatesCountDisplay = document.getElementById('roommates-count');
+        const banoCountDisplay = document.getElementById('bano-count');
+        const habitacionCountDisplay = document.getElementById('habitacion-count');
+        const cristalSalonCountDisplay = document.getElementById('cristal-salon-count');
+        const cristalCocinaCountDisplay = document.getElementById('cristal-cocina-count');
+        const cristalBanoCountDisplay = document.getElementById('cristal-bano-count');
+        const cristalHabitacionCountDisplay = document.getElementById('cristal-habitacion-count');
+        const cristalTerrazaCountDisplay = document.getElementById('cristal-terraza-count');
+        const cristalLavanderiaCountDisplay = document.getElementById('cristal-lavanderia-count');
+        const cristalBalconerasCountDisplay = document.getElementById('cristal-balconeras-count');
+        const cristalEscaparatesCountDisplay = document.getElementById('cristal-escaparates-count');
+        
+        // Elementos de subtotales
+        const areasSubtotalDisplay = document.getElementById('areas-subtotal');
+        const complementsSubtotalDisplay = document.getElementById('complements-subtotal');
+        const electrodomesticosSubtotalDisplay = document.getElementById('electrodomesticos-subtotal');
+        const windowsSubtotalDisplay = document.getElementById('windows-subtotal');
+        const specialSubtotalDisplay = document.getElementById('special-subtotal');
+
+        const proceedButton = document.getElementById('proceed-to-form');
+        const resetButton = document.getElementById('reset-order');
+        const backButton = document.getElementById('back-to-constructor');
+        const clientForm = document.getElementById('client-form');
+        const clientFormSection = document.getElementById('client-form-section');
+        const confirmationSection = document.getElementById('confirmation-section');
+        const newOrderButton = document.getElementById('new-order');
+        const constructorSection = document.querySelector('.constructor-container');
+        const finalSummaryModal = document.getElementById('final-summary-modal');
+        const sendWhatsAppButton = document.getElementById('send-whatsapp-btn');
+        const cancelFinalSummaryButton = document.getElementById('cancel-final-summary-btn');
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeEventListeners();
+            updateUI();
+        });
+
+        // Configurar event listeners
+        function initializeEventListeners() {
+            // Toggles de módulos (ahora para activar/desactivar categorías)
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const module = this.closest('.service-module');
+                    const moduleId = module.id;
+                    const category = getCategoryFromModuleId(moduleId);
+                    
+                    // Cambiar estado de la categoría
+                    state.activeCategories[category] = !state.activeCategories[category];
+                    
+                    // Actualizar UI del toggle
+                    this.classList.toggle('active', state.activeCategories[category]);
+                    
+                    // Actualizar apariencia del módulo
+                    module.classList.toggle('disabled', !state.activeCategories[category]);
+                    
+                    // Colapsar automáticamente cuando se desactiva
+                    if (!state.activeCategories[category]) {
+                        module.classList.remove('active');
+                    }
+                    
+                    // Recalcular total
+                    calculateTotal();
+                    updateUI();
+                });
+            });
+
+            // Clic en el header para expandir/colapsar contenido
+            document.querySelectorAll('.module-header').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    // No hacer nada si se hizo clic en el toggle
+                    if (e.target.closest('.module-toggle')) return;
+                    
+                    const module = this.closest('.service-module');
+                    const category = getCategoryFromModuleId(module.id);
+                    
+                    // Solo expandir/colapsar si la categoría está activa
+                    if (state.activeCategories[category]) {
+                        module.classList.toggle('active');
+                    }
+                });
+            });
+
+            // Opciones de servicios
+            options.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    // Evitar que el clic en el input active/desactive la selección
+                    if (e.target.tagName === 'INPUT') {
+                        return;
+                    }
+                    
+                    const service = this.dataset.service;
+                    const category = getCategoryFromService(service);
+                    
+                    // Solo permitir seleccionar si la categoría está activa
+                    if (!state.activeCategories[category]) {
+                        return;
+                    }
+                    
+                    if (this.classList.contains('selected')) {
+                        // Deseleccionar
+                        this.classList.remove('selected');
+                        delete state.selectedServices[service];
+                    } else {
+                        // Seleccionar
+                        this.classList.add('selected');
+                        const priceInput = this.querySelector('.price-input');
+                        const price = priceInput ? parseFloat(priceInput.value) : state.customPrices[service];
+                        
+                        state.selectedServices[service] = {
+                            name: this.querySelector('.option-name').textContent.trim(),
+                            price: price,
+                            customPrice: priceInput ? true : false
+                        };
+                    }
+                    
+                    calculateTotal();
+                    updateUI();
+                });
+            });
+
+            // Inputs de precio para opciones normales
+            document.querySelectorAll('.price-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    const service = this.closest('.module-option').dataset.service;
+                    const price = parseFloat(this.value) || 0;
+                    
+                    // Actualizar precio en el estado
+                    state.customPrices[service] = price;
+                    
+                    // Si el servicio está seleccionado, actualizar su precio
+                    if (state.selectedServices[service]) {
+                        state.selectedServices[service].price = price;
+                        state.selectedServices[service].customPrice = true;
+                        
+                        // Recalcular total
+                        calculateTotal();
+                        updateUI();
+                    }
+                });
+
+                // Evitar que el clic en el input active/desactive la opción
+                input.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+
+            // Controles para baños
+            document.getElementById('bano-increment').addEventListener('click', () => {
+                if (state.activeCategories.areas) {
+                    state.banoCount++;
+                    updateBanoCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('bano-decrement').addEventListener('click', () => {
+                if (state.activeCategories.areas && state.banoCount > 0) {
+                    state.banoCount--;
+                    updateBanoCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para baños
+            document.getElementById('bano-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices.bano = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para habitaciones
+            document.getElementById('habitacion-increment').addEventListener('click', () => {
+                if (state.activeCategories.areas) {
+                    state.habitacionCount++;
+                    updateHabitacionCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('habitacion-decrement').addEventListener('click', () => {
+                if (state.activeCategories.areas && state.habitacionCount > 0) {
+                    state.habitacionCount--;
+                    updateHabitacionCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para habitaciones
+            document.getElementById('habitacion-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices.habitacion = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales salón
+            document.getElementById('cristal-salon-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalSalonCount++;
+                    updateCristalSalonCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-salon-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalSalonCount > 0) {
+                    state.cristalSalonCount--;
+                    updateCristalSalonCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales salón
+            document.getElementById('cristal-salon-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-salon'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales cocina
+            document.getElementById('cristal-cocina-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalCocinaCount++;
+                    updateCristalCocinaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-cocina-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalCocinaCount > 0) {
+                    state.cristalCocinaCount--;
+                    updateCristalCocinaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales cocina
+            document.getElementById('cristal-cocina-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-cocina'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales baño
+            document.getElementById('cristal-bano-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalBanoCount++;
+                    updateCristalBanoCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-bano-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalBanoCount > 0) {
+                    state.cristalBanoCount--;
+                    updateCristalBanoCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales baño
+            document.getElementById('cristal-bano-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-bano'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales habitación
+            document.getElementById('cristal-habitacion-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalHabitacionCount++;
+                    updateCristalHabitacionCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-habitacion-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalHabitacionCount > 0) {
+                    state.cristalHabitacionCount--;
+                    updateCristalHabitacionCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales habitación
+            document.getElementById('cristal-habitacion-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-habitacion'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales terraza
+            document.getElementById('cristal-terraza-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalTerrazaCount++;
+                    updateCristalTerrazaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-terraza-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalTerrazaCount > 0) {
+                    state.cristalTerrazaCount--;
+                    updateCristalTerrazaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales terraza
+            document.getElementById('cristal-terraza-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-terraza'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales lavandería
+            document.getElementById('cristal-lavanderia-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalLavanderiaCount++;
+                    updateCristalLavanderiaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-lavanderia-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalLavanderiaCount > 0) {
+                    state.cristalLavanderiaCount--;
+                    updateCristalLavanderiaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales lavandería
+            document.getElementById('cristal-lavanderia-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-lavanderia'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales balconeras
+            document.getElementById('cristal-balconeras-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalBalconerasCount++;
+                    updateCristalBalconerasCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-balconeras-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalBalconerasCount > 0) {
+                    state.cristalBalconerasCount--;
+                    updateCristalBalconerasCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales balconeras
+            document.getElementById('cristal-balconeras-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-balconeras'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles para cristales escaparates
+            document.getElementById('cristal-escaparates-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalEscaparatesCount++;
+                    updateCristalEscaparatesCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-escaparates-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalEscaparatesCount > 0) {
+                    state.cristalEscaparatesCount--;
+                    updateCristalEscaparatesCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para cristales escaparates
+            document.getElementById('cristal-escaparates-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-escaparates'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // Controles de compañeros
+            document.getElementById('roommates-increment').addEventListener('click', () => {
+                state.roommatesCount++;
+                updateRoommatesCount();
+                calculateTotal();
+                updateUI();
+            });
+
+            document.getElementById('roommates-decrement').addEventListener('click', () => {
+                if (state.roommatesCount > 1) {
+                    state.roommatesCount--;
+                    updateRoommatesCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Navegación
+            proceedButton.addEventListener('click', () => {
+                if (Object.keys(state.selectedServices).length === 0 && 
+                    state.banoCount === 0 && 
+                    state.habitacionCount === 0 &&
+                    state.cristalSalonCount === 0 &&
+                    state.cristalCocinaCount === 0 &&
+                    state.cristalBanoCount === 0 &&
+                    state.cristalHabitacionCount === 0 &&
+                    state.cristalTerrazaCount === 0 &&
+                    state.cristalLavanderiaCount === 0 &&
+                    state.cristalBalconerasCount === 0 &&
+                    state.cristalEscaparatesCount === 0) {
+                    alert('Por favor, selecciona al menos un servicio antes de continuar.');
+                    return;
+                }
+                
+                constructorSection.style.display = 'none';
+                clientFormSection.classList.add('active');
+            });
+
+            backButton.addEventListener('click', () => {
+                clientFormSection.classList.remove('active');
+                constructorSection.style.display = 'grid';
+            });
+
+            newOrderButton.addEventListener('click', () => {
+                confirmationSection.classList.remove('active');
+                constructorSection.style.display = 'grid';
+                resetOrder();
+            });
+
+            resetButton.addEventListener('click', resetOrder);
+
+            // Formulario
+            clientForm.addEventListener('submit', handleFormSubmit);
+
+            // Modal de resumen final
+            sendWhatsAppButton.addEventListener('click', sendWhatsAppMessage);
+            cancelFinalSummaryButton.addEventListener('click', () => {
+                finalSummaryModal.classList.remove('open');
+            });
+        }
+
+        // Obtener categoría a partir del ID del módulo
+        function getCategoryFromModuleId(moduleId) {
+            const categoryMap = {
+                'areas-module': 'areas',
+                'complements-module': 'complements',
+                'electrodomesticos-module': 'electrodomesticos',
+                'windows-module': 'windows',
+                'special-module': 'special'
+            };
+            return categoryMap[moduleId] || 'areas';
+        }
+
+        // Actualizar interfaz
+        function updateUI() {
+            updateSummary();
+            updateTotalCost();
+            updateCostPerPerson();
+            updateCategorySubtotals();
+        }
+
+        // Actualizar subtotales de categorías
+        function updateCategorySubtotals() {
+            // Calcular subtotal REAL de Áreas Principales (sin importar si está activa)
+            let areasRealSubtotal = 0;
+            if (state.selectedServices.salon) areasRealSubtotal += state.selectedServices.salon.price;
+            if (state.selectedServices.cocina) areasRealSubtotal += state.selectedServices.cocina.price;
+            areasRealSubtotal += state.banoCount * state.customPrices.bano;
+            areasRealSubtotal += state.habitacionCount * state.customPrices.habitacion;
+            
+            areasSubtotalDisplay.textContent = `${areasRealSubtotal}€`;
+            areasSubtotalDisplay.classList.toggle('zero', areasRealSubtotal === 0);
+
+            // Calcular subtotal REAL de Complementos
+            let complementsRealSubtotal = 0;
+            if (state.selectedServices.pasillo) complementsRealSubtotal += state.selectedServices.pasillo.price;
+            if (state.selectedServices.platos) complementsRealSubtotal += state.selectedServices.platos.price;
+            if (state.selectedServices.mamparas) complementsRealSubtotal += state.selectedServices.mamparas.price;
+            if (state.selectedServices.basura) complementsRealSubtotal += state.selectedServices.basura.price;
+            
+            complementsSubtotalDisplay.textContent = `${complementsRealSubtotal}€`;
+            complementsSubtotalDisplay.classList.toggle('zero', complementsRealSubtotal === 0);
+
+            // Calcular subtotal REAL de Electrodomésticos
+            let electrodomesticosRealSubtotal = 0;
+            if (state.selectedServices.horno) electrodomesticosRealSubtotal += state.selectedServices.horno.price;
+            if (state.selectedServices.nevera) electrodomesticosRealSubtotal += state.selectedServices.nevera.price;
+            if (state.selectedServices.campana) electrodomesticosRealSubtotal += state.selectedServices.campana.price;
+            
+            electrodomesticosSubtotalDisplay.textContent = `${electrodomesticosRealSubtotal}€`;
+            electrodomesticosSubtotalDisplay.classList.toggle('zero', electrodomesticosRealSubtotal === 0);
+
+            // Calcular subtotal REAL de Cristales
+            let windowsRealSubtotal = 0;
+            windowsRealSubtotal += state.cristalSalonCount * state.customPrices['cristal-salon'];
+            windowsRealSubtotal += state.cristalCocinaCount * state.customPrices['cristal-cocina'];
+            windowsRealSubtotal += state.cristalBanoCount * state.customPrices['cristal-bano'];
+            windowsRealSubtotal += state.cristalHabitacionCount * state.customPrices['cristal-habitacion'];
+            windowsRealSubtotal += state.cristalTerrazaCount * state.customPrices['cristal-terraza'];
+            windowsRealSubtotal += state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
+            windowsRealSubtotal += state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
+            windowsRealSubtotal += state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+            
+            windowsSubtotalDisplay.textContent = `${windowsRealSubtotal}€`;
+            windowsSubtotalDisplay.classList.toggle('zero', windowsRealSubtotal === 0);
+
+            // Calcular subtotal REAL de Servicios Especiales
+            let specialRealSubtotal = 0;
+            if (state.selectedServices.escalera) specialRealSubtotal += state.selectedServices.escalera.price;
+            if (state.selectedServices.terraza) specialRealSubtotal += state.selectedServices.terraza.price;
+            if (state.selectedServices.lavanderia) specialRealSubtotal += state.selectedServices.lavanderia.price;
+            if (state.selectedServices.organizacion) specialRealSubtotal += state.selectedServices.organizacion.price;
+            
+            specialSubtotalDisplay.textContent = `${specialRealSubtotal}€`;
+            specialSubtotalDisplay.classList.toggle('zero', specialRealSubtotal === 0);
+        }
+
+        // Actualizar resumen de pedido
+        function updateSummary() {
+            // Limpiar resumen (excepto cuota de activación)
+            const itemsToRemove = summaryItems.querySelectorAll('.summary-item:not(:first-child)');
+            itemsToRemove.forEach(item => item.remove());
+            
+            // Añadir servicios seleccionados (solo si la categoría está activa)
+            Object.entries(state.selectedServices).forEach(([serviceKey, service]) => {
+                const category = getCategoryFromService(serviceKey);
+                if (state.activeCategories[category]) {
+                    const item = document.createElement('div');
+                    item.className = 'summary-item';
+                    
+                    // Añadir indicador de precio personalizado si corresponde
+                    const customIndicator = service.customPrice ? ' 🎯' : '';
+                    
+                    item.innerHTML = `
+                        <span class="summary-item-name">${service.name}${customIndicator}</span>
+                        <span class="summary-item-price">${service.price}€</span>
+                    `;
+                    summaryItems.appendChild(item);
+                }
+            });
+            
+            // Añadir baños si hay y la categoría está activa
+            if (state.banoCount > 0 && state.activeCategories.areas) {
+                const banoTotal = state.banoCount * state.customPrices.bano;
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🚿 Baños (${state.banoCount} x ${state.customPrices.bano}€)</span>
+                    <span class="summary-item-price">${banoTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir habitaciones si hay y la categoría está activa
+            if (state.habitacionCount > 0 && state.activeCategories.areas) {
+                const habitacionTotal = state.habitacionCount * state.customPrices.habitacion;
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🛏️ Habitaciones (${state.habitacionCount} x ${state.customPrices.habitacion}€)</span>
+                    <span class="summary-item-price">${habitacionTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales salón si hay y la categoría está activa
+            if (state.cristalSalonCount > 0 && state.activeCategories.windows) {
+                const cristalSalonTotal = state.cristalSalonCount * state.customPrices['cristal-salon'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Cristales Salón (${state.cristalSalonCount} x ${state.customPrices['cristal-salon']}€)</span>
+                    <span class="summary-item-price">${cristalSalonTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales cocina si hay y la categoría está activa
+            if (state.cristalCocinaCount > 0 && state.activeCategories.windows) {
+                const cristalCocinaTotal = state.cristalCocinaCount * state.customPrices['cristal-cocina'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Cristales Cocina (${state.cristalCocinaCount} x ${state.customPrices['cristal-cocina']}€)</span>
+                    <span class="summary-item-price">${cristalCocinaTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales baño si hay y la categoría está activa
+            if (state.cristalBanoCount > 0 && state.activeCategories.windows) {
+                const cristalBanoTotal = state.cristalBanoCount * state.customPrices['cristal-bano'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Cristales Baño (${state.cristalBanoCount} x ${state.customPrices['cristal-bano']}€)</span>
+                    <span class="summary-item-price">${cristalBanoTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales habitación si hay y la categoría está activa
+            if (state.cristalHabitacionCount > 0 && state.activeCategories.windows) {
+                const cristalHabitacionTotal = state.cristalHabitacionCount * state.customPrices['cristal-habitacion'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Cristales Habitación (${state.cristalHabitacionCount} x ${state.customPrices['cristal-habitacion']}€)</span>
+                    <span class="summary-item-price">${cristalHabitacionTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales terraza si hay y la categoría está activa
+            if (state.cristalTerrazaCount > 0 && state.activeCategories.windows) {
+                const cristalTerrazaTotal = state.cristalTerrazaCount * state.customPrices['cristal-terraza'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Cristales Terraza (${state.cristalTerrazaCount} x ${state.customPrices['cristal-terraza']}€)</span>
+                    <span class="summary-item-price">${cristalTerrazaTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales lavandería si hay y la categoría está activa
+            if (state.cristalLavanderiaCount > 0 && state.activeCategories.windows) {
+                const cristalLavanderiaTotal = state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Cristales Lavandería (${state.cristalLavanderiaCount} x ${state.customPrices['cristal-lavanderia']}€)</span>
+                    <span class="summary-item-price">${cristalLavanderiaTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales balconeras si hay y la categoría está activa
+            if (state.cristalBalconerasCount > 0 && state.activeCategories.windows) {
+                const cristalBalconerasTotal = state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Balconeras (${state.cristalBalconerasCount} x ${state.customPrices['cristal-balconeras']}€)</span>
+                    <span class="summary-item-price">${cristalBalconerasTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // Añadir cristales escaparates si hay y la categoría está activa
+            if (state.cristalEscaparatesCount > 0 && state.activeCategories.windows) {
+                const cristalEscaparatesTotal = state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🪟 Escaparates (${state.cristalEscaparatesCount} x ${state.customPrices['cristal-escaparates']}€)</span>
+                    <span class="summary-item-price">${cristalEscaparatesTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+        }
+
+        // Obtener categoría a partir del servicio
+        function getCategoryFromService(serviceKey) {
+            const categoryMap = {
+                'salon': 'areas',
+                'cocina': 'areas',
+                'pasillo': 'complements',
+                'platos': 'complements',
+                'mamparas': 'complements',
+                'basura': 'complements',
+                'horno': 'electrodomesticos',
+                'nevera': 'electrodomesticos',
+                'campana': 'electrodomesticos',
+                'escalera': 'special',
+                'terraza': 'special',
+                'lavanderia': 'special',
+                'organizacion': 'special'
+            };
+            return categoryMap[serviceKey] || 'areas';
+        }
+
+        // Actualizar contadores
+        function updateBanoCount() {
+            banoCountDisplay.textContent = state.banoCount;
+        }
+
+        function updateHabitacionCount() {
+            habitacionCountDisplay.textContent = state.habitacionCount;
+        }
+
+        function updateCristalSalonCount() {
+            cristalSalonCountDisplay.textContent = state.cristalSalonCount;
+        }
+
+        function updateCristalCocinaCount() {
+            cristalCocinaCountDisplay.textContent = state.cristalCocinaCount;
+        }
+
+        function updateCristalBanoCount() {
+            cristalBanoCountDisplay.textContent = state.cristalBanoCount;
+        }
+
+        function updateCristalHabitacionCount() {
+            cristalHabitacionCountDisplay.textContent = state.cristalHabitacionCount;
+        }
+
+        function updateCristalTerrazaCount() {
+            cristalTerrazaCountDisplay.textContent = state.cristalTerrazaCount;
+        }
+
+        function updateCristalLavanderiaCount() {
+            cristalLavanderiaCountDisplay.textContent = state.cristalLavanderiaCount;
+        }
+
+        function updateCristalBalconerasCount() {
+            cristalBalconerasCountDisplay.textContent = state.cristalBalconerasCount;
+        }
+
+        function updateCristalEscaparatesCount() {
+            cristalEscaparatesCountDisplay.textContent = state.cristalEscaparatesCount;
+        }
+
+        function updateRoommatesCount() {
+            roommatesCountDisplay.textContent = state.roommatesCount;
+        }
+
+        // Actualizar coste total
+        function updateTotalCost() {
+            totalCostDisplay.textContent = `${state.totalCost}€`;
+        }
+
+        // Actualizar coste por persona
+        function updateCostPerPerson() {
+            costPerPersonDisplay.textContent = `${state.costPerPerson.toFixed(2)}€`;
+        }
+
+        // Calcular total
+        function calculateTotal() {
+            let subtotal = state.activationFee;
+            
+            // Sumar servicios seleccionados (solo si la categoría está activa)
+            Object.entries(state.selectedServices).forEach(([serviceKey, service]) => {
+                const category = getCategoryFromService(serviceKey);
+                if (state.activeCategories[category]) {
+                    subtotal += service.price;
+                }
+            });
+            
+            // Sumar baños (cantidad × precio personalizado) si la categoría está activa
+            if (state.activeCategories.areas) {
+                subtotal += state.banoCount * state.customPrices.bano;
+            }
+            
+            // Sumar habitaciones (cantidad × precio personalizado) si la categoría está activa
+            if (state.activeCategories.areas) {
+                subtotal += state.habitacionCount * state.customPrices.habitacion;
+            }
+            
+            // Sumar cristales (cantidad × precio personalizado) si la categoría está activa
+            if (state.activeCategories.windows) {
+                subtotal += state.cristalSalonCount * state.customPrices['cristal-salon'];
+                subtotal += state.cristalCocinaCount * state.customPrices['cristal-cocina'];
+                subtotal += state.cristalBanoCount * state.customPrices['cristal-bano'];
+                subtotal += state.cristalHabitacionCount * state.customPrices['cristal-habitacion'];
+                subtotal += state.cristalTerrazaCount * state.customPrices['cristal-terraza'];
+                subtotal += state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
+                subtotal += state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
+                subtotal += state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+            }
+            
+            state.totalCost = subtotal;
+            state.costPerPerson = state.totalCost / state.roommatesCount;
+        }
+
+        // Reiniciar pedido
+        function resetOrder() {
+            state.selectedServices = {};
+            state.banoCount = 0;
+            state.habitacionCount = 0;
+            state.cristalSalonCount = 0;
+            state.cristalCocinaCount = 0;
+            state.cristalBanoCount = 0;
+            state.cristalHabitacionCount = 0;
+            state.cristalTerrazaCount = 0;
+            state.cristalLavanderiaCount = 0;
+            state.cristalBalconerasCount = 0;
+            state.cristalEscaparatesCount = 0;
+            state.roommatesCount = 1;
+            state.totalCost = state.activationFee;
+            state.costPerPerson = state.activationFee;
+            
+            // Reactivar todas las categorías
+            Object.keys(state.activeCategories).forEach(category => {
+                state.activeCategories[category] = true;
+            });
+            
+            // Deseleccionar todas las opciones
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Restablecer toggles a activo
+            toggles.forEach(toggle => {
+                toggle.classList.add('active');
+            });
+            
+            // Restablecer apariencia de módulos
+            modules.forEach(module => {
+                module.classList.remove('disabled');
+                // Solo mantener activo el primer módulo
+                if (module.id === 'areas-module') {
+                    module.classList.add('active');
+                } else {
+                    module.classList.remove('active');
+                }
+            });
+            
+            // Restablecer precios a valores por defecto
+            document.querySelectorAll('.price-input').forEach(input => {
+                const service = input.closest('.module-option')?.dataset.service;
+                if (service) {
+                    input.value = state.customPrices[service];
+                }
+            });
+            
+            // Restablecer precios de baños, habitaciones y cristales
+            document.getElementById('bano-price').value = state.customPrices.bano;
+            document.getElementById('habitacion-price').value = state.customPrices.habitacion;
+            document.getElementById('cristal-salon-price').value = state.customPrices['cristal-salon'];
+            document.getElementById('cristal-cocina-price').value = state.customPrices['cristal-cocina'];
+            document.getElementById('cristal-bano-price').value = state.customPrices['cristal-bano'];
+            document.getElementById('cristal-habitacion-price').value = state.customPrices['cristal-habitacion'];
+            document.getElementById('cristal-terraza-price').value = state.customPrices['cristal-terraza'];
+            document.getElementById('cristal-lavanderia-price').value = state.customPrices['cristal-lavanderia'];
+            document.getElementById('cristal-balconeras-price').value = state.customPrices['cristal-balconeras'];
+            document.getElementById('cristal-escaparates-price').value = state.customPrices['cristal-escaparates'];
+            
+            // Actualizar todos los contadores
+            updateBanoCount();
+            updateHabitacionCount();
+            updateCristalSalonCount();
+            updateCristalCocinaCount();
+            updateCristalBanoCount();
+            updateCristalHabitacionCount();
+            updateCristalTerrazaCount();
+            updateCristalLavanderiaCount();
+            updateCristalBalconerasCount();
+            updateCristalEscaparatesCount();
+            updateRoommatesCount();
+            updateUI();
+        }
+
+        // Formatear fecha
+        function formatDate(dateString) {
+            const date = new Date(dateString + 'T00:00:00');
+            return date.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Manejar envío del formulario
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            // Validar formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const calle = document.getElementById('calle').value.trim();
+            const portal = document.getElementById('portal').value.trim();
+            const piso = document.getElementById('piso').value.trim();
+            const puerta = document.getElementById('puerta').value.trim();
+            const fecha1 = document.getElementById('fecha1').value;
+            const fecha2 = document.getElementById('fecha2').value;
+
+            let hasError = false;
+
+            const validateField = (fieldId, errorId, value) => {
+                const field = document.getElementById(fieldId);
+                const error = document.getElementById(errorId);
+                if (!value) {
+                    field.classList.add('error');
+                    error.classList.add('show');
+                    hasError = true;
+                } else {
+                    field.classList.remove('error');
+                    error.classList.remove('show');
+                }
+            };
+
+            validateField('nombre', 'errorNombre', nombre);
+            validateField('calle', 'errorCalle', calle);
+            validateField('portal', 'errorPortal', portal);
+            validateField('piso', 'errorPiso', piso);
+            validateField('puerta', 'errorPuerta', puerta);
+            validateField('fecha1', 'errorFecha1', fecha1);
+            validateField('fecha2', 'errorFecha2', fecha2);
+
+            if (hasError) {
+                return;
+            }
+
+            const direccion = `${calle}, Portal ${portal}, Piso ${piso}, Puerta ${puerta}`;
+
+            // Actualizar el modal de resumen final
+            document.getElementById('final-nombre').textContent = nombre;
+            document.getElementById('final-direccion').textContent = direccion;
+            document.getElementById('final-fecha1').textContent = formatDate(fecha1);
+            document.getElementById('final-fecha2').textContent = formatDate(fecha2);
+            document.getElementById('final-total-cost').textContent = `${state.totalCost} €`;
+            document.getElementById('final-cost-per-person').textContent = `${state.costPerPerson.toFixed(2)} €`;
+            document.getElementById('final-roommates-count').textContent = state.roommatesCount;
+            document.getElementById('final-roommates-plural').textContent = state.roommatesCount === 1 ? '' : 's';
+
+            const servicesList = document.getElementById('final-services-list');
+            servicesList.innerHTML = '';
+
+            // Añadir servicios seleccionados al resumen final
+            Object.entries(state.selectedServices).forEach(([serviceKey, service]) => {
+                const category = getCategoryFromService(serviceKey);
+                if (state.activeCategories[category]) {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'summary-item';
+                    itemDiv.innerHTML = `
+                        <span class="summary-item-label">${service.name}</span>
+                        <span class="summary-item-value">${service.price} €</span>
+                    `;
+                    servicesList.appendChild(itemDiv);
+                }
+            });
+
+            // Añadir baños si hay
+            if (state.banoCount > 0 && state.activeCategories.areas) {
+                const banoTotal = state.banoCount * state.customPrices.bano;
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Baños (${state.banoCount} x ${state.customPrices.bano}€)</span>
+                    <span class="summary-item-value">${banoTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir habitaciones si hay
+            if (state.habitacionCount > 0 && state.activeCategories.areas) {
+                const habitacionTotal = state.habitacionCount * state.customPrices.habitacion;
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Habitaciones (${state.habitacionCount} x ${state.customPrices.habitacion}€)</span>
+                    <span class="summary-item-value">${habitacionTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales salón si hay
+            if (state.cristalSalonCount > 0 && state.activeCategories.windows) {
+                const cristalSalonTotal = state.cristalSalonCount * state.customPrices['cristal-salon'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Cristales Salón (${state.cristalSalonCount} x ${state.customPrices['cristal-salon']}€)</span>
+                    <span class="summary-item-value">${cristalSalonTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales cocina si hay
+            if (state.cristalCocinaCount > 0 && state.activeCategories.windows) {
+                const cristalCocinaTotal = state.cristalCocinaCount * state.customPrices['cristal-cocina'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Cristales Cocina (${state.cristalCocinaCount} x ${state.customPrices['cristal-cocina']}€)</span>
+                    <span class="summary-item-value">${cristalCocinaTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales baño si hay
+            if (state.cristalBanoCount > 0 && state.activeCategories.windows) {
+                const cristalBanoTotal = state.cristalBanoCount * state.customPrices['cristal-bano'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Cristales Baño (${state.cristalBanoCount} x ${state.customPrices['cristal-bano']}€)</span>
+                    <span class="summary-item-value">${cristalBanoTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales habitación si hay
+            if (state.cristalHabitacionCount > 0 && state.activeCategories.windows) {
+                const cristalHabitacionTotal = state.cristalHabitacionCount * state.customPrices['cristal-habitacion'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Cristales Habitación (${state.cristalHabitacionCount} x ${state.customPrices['cristal-habitacion']}€)</span>
+                    <span class="summary-item-value">${cristalHabitacionTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales terraza si hay
+            if (state.cristalTerrazaCount > 0 && state.activeCategories.windows) {
+                const cristalTerrazaTotal = state.cristalTerrazaCount * state.customPrices['cristal-terraza'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Cristales Terraza (${state.cristalTerrazaCount} x ${state.customPrices['cristal-terraza']}€)</span>
+                    <span class="summary-item-value">${cristalTerrazaTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales lavandería si hay
+            if (state.cristalLavanderiaCount > 0 && state.activeCategories.windows) {
+                const cristalLavanderiaTotal = state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Cristales Lavandería (${state.cristalLavanderiaCount} x ${state.customPrices['cristal-lavanderia']}€)</span>
+                    <span class="summary-item-value">${cristalLavanderiaTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales balconeras si hay
+            if (state.cristalBalconerasCount > 0 && state.activeCategories.windows) {
+                const cristalBalconerasTotal = state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Balconeras (${state.cristalBalconerasCount} x ${state.customPrices['cristal-balconeras']}€)</span>
+                    <span class="summary-item-value">${cristalBalconerasTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Añadir cristales escaparates si hay
+            if (state.cristalEscaparatesCount > 0 && state.activeCategories.windows) {
+                const cristalEscaparatesTotal = state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Escaparates (${state.cristalEscaparatesCount} x ${state.customPrices['cristal-escaparates']}€)</span>
+                    <span class="summary-item-value">${cristalEscaparatesTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // Mostrar el modal de resumen final
+            finalSummaryModal.classList.add('open');
+        }
+
+        // Enviar mensaje por WhatsApp
+        function sendWhatsAppMessage() {
+            const nombre = document.getElementById('nombre').value.trim();
+            const calle = document.getElementById('calle').value.trim();
+            const portal = document.getElementById('portal').value.trim();
+            const piso = document.getElementById('piso').value.trim();
+            const puerta = document.getElementById('puerta').value.trim();
+            const fecha1 = document.getElementById('fecha1').value;
+            const fecha2 = document.getElementById('fecha2').value;
+
+            const direccion = `${calle}, Portal ${portal}, Piso ${piso}, Puerta ${puerta}`;
+
+            // Mensaje profesional y minimalista para WhatsApp - INCLUYENDO TODOS LOS DETALLES
+            let message = `PPTO. SERVICIO DE LIMPIEZA\n\n`;
+            
+            message += `INFORMACIÓN CLIENTE\n`;
+            message += `• Nombre: ${nombre}\n`;
+            message += `• Dirección: ${direccion}\n\n`;
+            
+            message += `FECHAS PARA VISITA\n`;
+            message += `• Primera opción: ${formatDate(fecha1)}\n`;
+            message += `• Segunda opción: ${formatDate(fecha2)}\n\n`;
+            
+            message += `SERVICIOS SOLICITADOS\n`;
+            
+            // Servicios seleccionados
+            Object.entries(state.selectedServices).forEach(([serviceKey, service]) => {
+                const category = getCategoryFromService(serviceKey);
+                if (state.activeCategories[category]) {
+                    message += `• ${service.name}: ${service.price}€\n`;
+                }
+            });
+            
+            // Baños
+            if (state.banoCount > 0 && state.activeCategories.areas) {
+                const banoTotal = state.banoCount * state.customPrices.bano;
+                message += `• Baños (${state.banoCount} x ${state.customPrices.bano}€): ${banoTotal}€\n`;
+            }
+            
+            // Habitaciones
+            if (state.habitacionCount > 0 && state.activeCategories.areas) {
+                const habitacionTotal = state.habitacionCount * state.customPrices.habitacion;
+                message += `• Habitaciones (${state.habitacionCount} x ${state.customPrices.habitacion}€): ${habitacionTotal}€\n`;
+            }
+            
+            // Cristales salón
+            if (state.cristalSalonCount > 0 && state.activeCategories.windows) {
+                const cristalSalonTotal = state.cristalSalonCount * state.customPrices['cristal-salon'];
+                message += `• Cristales Salón (${state.cristalSalonCount} x ${state.customPrices['cristal-salon']}€): ${cristalSalonTotal}€\n`;
+            }
+            
+            // Cristales cocina
+            if (state.cristalCocinaCount > 0 && state.activeCategories.windows) {
+                const cristalCocinaTotal = state.cristalCocinaCount * state.customPrices['cristal-cocina'];
+                message += `• Cristales Cocina (${state.cristalCocinaCount} x ${state.customPrices['cristal-cocina']}€): ${cristalCocinaTotal}€\n`;
+            }
+            
+            // Cristales baño
+            if (state.cristalBanoCount > 0 && state.activeCategories.windows) {
+                const cristalBanoTotal = state.cristalBanoCount * state.customPrices['cristal-bano'];
+                message += `• Cristales Baño (${state.cristalBanoCount} x ${state.customPrices['cristal-bano']}€): ${cristalBanoTotal}€\n`;
+            }
+            
+            // Cristales habitación
+            if (state.cristalHabitacionCount > 0 && state.activeCategories.windows) {
+                const cristalHabitacionTotal = state.cristalHabitacionCount * state.customPrices['cristal-habitacion'];
+                message += `• Cristales Habitación (${state.cristalHabitacionCount} x ${state.customPrices['cristal-habitacion']}€): ${cristalHabitacionTotal}€\n`;
+            }
+            
+            // Cristales terraza
+            if (state.cristalTerrazaCount > 0 && state.activeCategories.windows) {
+                const cristalTerrazaTotal = state.cristalTerrazaCount * state.customPrices['cristal-terraza'];
+                message += `• Cristales Terraza (${state.cristalTerrazaCount} x ${state.customPrices['cristal-terraza']}€): ${cristalTerrazaTotal}€\n`;
+            }
+            
+            // Cristales lavandería
+            if (state.cristalLavanderiaCount > 0 && state.activeCategories.windows) {
+                const cristalLavanderiaTotal = state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
+                message += `• Cristales Lavandería (${state.cristalLavanderiaCount} x ${state.customPrices['cristal-lavanderia']}€): ${cristalLavanderiaTotal}€\n`;
+            }
+            
+            // Cristales balconeras
+            if (state.cristalBalconerasCount > 0 && state.activeCategories.windows) {
+                const cristalBalconerasTotal = state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
+                message += `• Balconeras (${state.cristalBalconerasCount} x ${state.customPrices['cristal-balconeras']}€): ${cristalBalconerasTotal}€\n`;
+            }
+            
+            // Cristales escaparates
+            if (state.cristalEscaparatesCount > 0 && state.activeCategories.windows) {
+                const cristalEscaparatesTotal = state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+                message += `• Escaparates (${state.cristalEscaparatesCount} x ${state.customPrices['cristal-escaparates']}€): ${cristalEscaparatesTotal}€\n`;
+            }
+            
+            message += `\nDETALLE DE COSTES\n`;
+            message += `• Cuota de activación: ${state.activationFee}€\n`;
+            message += `• Número de compañeros: ${state.roommatesCount}\n`;
+            message += `• Coste total del servicio: ${state.totalCost}€\n`;
+            message += `• Coste por persona: ${state.costPerPerson.toFixed(2)}€\n\n`;
+
+            message += `INFORMACIÓN ADICIONAL\n`;
+            message += `Esta solicitud ha sido generada a través del Constructor de Presupuestos TUM.\n\n`;
+            
+            message += `AGRADECEMOS SU CONFIANZA`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/34602846694?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            // Mostrar confirmación
+            finalSummaryModal.classList.remove('open');
+            clientFormSection.classList.remove('active');
+            confirmationSection.classList.add('active');
+        }
+
+        // Función para editar secciones (como en el proyecto de referencia)
+        function editSection(section) {
+            finalSummaryModal.classList.remove('open');
+            
+            if (section === 'services') {
+                clientFormSection.classList.remove('active');
+                constructorSection.style.display = 'grid';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (section === 'client-data' || section === 'dates') {
+                constructorSection.style.display = 'none';
+                clientFormSection.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
