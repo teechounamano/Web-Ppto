@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sistema de Presupuestos de servicios de limpieza.">
+    <meta name="description" content="Constructor modular de servicios de limpieza - Personaliza tu limpieza según tus necesidades">
     <link rel="icon" type="image/png" href="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png">
-    <title>Presupuesto TUM</title>
+    <title>Constructor de Limpieza - TeEchoUnaMano TUM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ================================================================
-           DISEÑO INNOVADOR - PPTO. DE LIMPIEZA
+           DISEÑO INNOVADOR - CONSTRUCTOR MODULAR DE LIMPIEZA
            ================================================================ */
 
         :root {
@@ -933,7 +933,7 @@
             color: var(--text-light);
         }
 
-        /* === MODAL FINAL - NUEVO DISEÑO === */
+        /* === MODAL FINAL - NUEVO DISEÑO RESPONSIVO === */
         .final-summary-modal {
             position: fixed;
             top: 0;
@@ -959,12 +959,13 @@
         .final-summary-content {
             background: white;
             border-radius: 8px;
-            padding: clamp(14px, 4vw, 24px);
+            padding: clamp(14px, 4vw, 20px);
             width: 100%;
-            max-width: 600px;
-            max-height: 92vh;
+            max-width: 500px; /* Reducido para móviles */
+            max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         .summary-header h2 {
@@ -1051,6 +1052,9 @@
             color: #64748B;
             font-weight: 600;
             flex: 1;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 70%;
         }
 
         .summary-item-value {
@@ -1058,6 +1062,8 @@
             color: #1E293B;
             font-weight: 700;
             flex-shrink: 0;
+            text-align: right;
+            max-width: 30%;
         }
 
         .activation-fee-highlight {
@@ -1314,6 +1320,47 @@
             
             .form-input {
                 padding-left: 40px !important;
+            }
+            
+            /* MEJORAS ESPECÍFICAS PARA EL MODAL EN MÓVILES */
+            .final-summary-content {
+                max-width: 95%; /* Más pequeño en móviles */
+                padding: 12px;
+                max-height: 85vh;
+            }
+            
+            .summary-section {
+                padding: 8px;
+                margin-bottom: 8px;
+            }
+            
+            .summary-section-title {
+                font-size: 14px;
+                padding: 6px;
+            }
+            
+            .summary-item {
+                padding: 4px 0;
+                flex-wrap: wrap;
+            }
+            
+            .summary-item-label {
+                max-width: 100%;
+                font-size: 12px;
+            }
+            
+            .summary-item-value {
+                max-width: 100%;
+                text-align: left;
+                font-size: 13px;
+            }
+            
+            .summary-actions {
+                flex-direction: column;
+            }
+            
+            .summary-btn {
+                min-width: 100%;
             }
         }
 
