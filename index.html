@@ -12,10 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ================================================================
-           DISEÑO MEJORADO - CONSTRUCTOR MODULAR DE LIMPIEZA
-           ================================================================ */
-
         :root {
             --primary: #1E3A8A;
             --primary-light: #3B82F6;
@@ -49,7 +45,7 @@
             padding: 0 16px;
         }
 
-        /* === HEADER MEJORADO === */
+        /* === HEADER CORREGIDO PARA MÓVIL === */
         header {
             background: var(--surface);
             box-shadow: var(--shadow);
@@ -60,22 +56,39 @@
             z-index: 100;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .header-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 16px;
-            gap: 16px;
         }
 
-        .logo {
+        .header-grid {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .header-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
-            flex: 1;
             min-width: 0;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                justify-content: center;
+            }
         }
 
         .logo-img {
@@ -110,10 +123,19 @@
             overflow-wrap: break-word;
         }
 
-        .header-info {
+        .header-stats {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .header-stats {
+                justify-content: center;
+                gap: 0.5rem;
+            }
         }
 
         .people-count {
@@ -124,7 +146,14 @@
             border-radius: 0.5rem;
             font-weight: 600;
             color: var(--primary);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        @media (max-width: 480px) {
+            .people-count {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
         }
 
         .header-total {
@@ -137,6 +166,26 @@
             align-items: center;
             gap: 0.5rem;
             box-shadow: var(--shadow);
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        @media (max-width: 480px) {
+            .header-total {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        .header-link-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 768px) {
+            .header-link-container {
+                justify-content: center;
+                margin-top: 4px;
+            }
         }
 
         .header-link {
@@ -159,6 +208,13 @@
 
         .header-link:hover {
             background: var(--primary-light);
+        }
+
+        @media (max-width: 480px) {
+            .header-link {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
         }
 
         /* === HERO SECTION === */
@@ -211,7 +267,7 @@
             height: fit-content;
         }
 
-        /* === MÓDULOS DE SERVICIOS - NUEVO DISEÑO === */
+        /* === MÓDULOS DE SERVICIOS === */
         .service-module {
             background: var(--surface);
             border-radius: 12px;
@@ -219,6 +275,12 @@
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
             border: 2px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .service-module {
+                padding: 1rem;
+            }
         }
 
         .service-module:hover {
@@ -254,6 +316,7 @@
             align-items: center;
             gap: 0.75rem;
             flex: 1;
+            min-width: 0;
         }
 
         .module-title {
@@ -263,6 +326,12 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .module-title {
+                font-size: 1.1rem;
+            }
         }
 
         .module-icon {
@@ -275,6 +344,14 @@
             background: var(--background);
             border-radius: 8px;
             flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .module-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
         }
 
         .module-subtotal {
@@ -305,6 +382,13 @@
             flex-shrink: 0;
         }
 
+        @media (max-width: 768px) {
+            .module-toggle {
+                width: 50px;
+                height: 28px;
+            }
+        }
+
         .module-toggle.active {
             background: var(--primary);
         }
@@ -322,8 +406,21 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
+        @media (max-width: 768px) {
+            .module-toggle::after {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
         .module-toggle.active::after {
             left: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .module-toggle.active::after {
+                left: 26px;
+            }
         }
 
         .module-content {
@@ -341,7 +438,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === OPCIONES DE MÓDULOS - DISEÑO MEJORADO === */
+        /* === OPCIONES DE MÓDULOS === */
         .module-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -349,7 +446,13 @@
             margin-bottom: 1rem;
         }
 
-        /* MEJORA: Diseño más profesional para las opciones seleccionadas */
+        @media (max-width: 768px) {
+            .module-options {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+        }
+
         .module-option {
             background: var(--background);
             border: 2px solid var(--border);
@@ -365,12 +468,17 @@
             justify-content: center;
         }
 
+        @media (max-width: 768px) {
+            .module-option {
+                padding: 0.75rem;
+            }
+        }
+
         .module-option:hover {
             border-color: var(--primary-light);
             transform: translateY(-2px);
         }
 
-        /* MEJORA: Diseño más destacado para elementos seleccionados */
         .module-option.selected {
             border-color: var(--secondary);
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
@@ -380,7 +488,6 @@
             overflow: hidden;
         }
 
-        /* MEJORA: Efecto sutil de fondo para elementos seleccionados */
         .module-option.selected::before {
             content: '';
             position: absolute;
@@ -422,6 +529,14 @@
             color: var(--text);
         }
 
+        @media (max-width: 768px) {
+            .price-input {
+                width: 70px;
+                font-size: 0.85rem;
+                padding: 0.4rem;
+            }
+        }
+
         .module-option.selected .price-input {
             background: white;
             color: var(--text);
@@ -442,33 +557,7 @@
             color: inherit;
         }
 
-        /* === ICONO DE VERIFICACIÓN - DISEÑO MEJORADO === */
-        .check-icon {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background-color: var(--secondary);
-            color: var(--white);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-        }
-
-        .module-option.selected .check-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* === CONTROLES DE CANTIDAD ESPECIALES === */
+        /* === CONTROLES DE CANTIDAD === */
         .quantity-controls-special {
             display: flex;
             flex-direction: column;
@@ -486,6 +575,15 @@
             border: 2px solid var(--border);
             gap: 1rem;
             transition: all 0.2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .quantity-item {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+                padding: 0.75rem;
+            }
         }
 
         .quantity-item:hover {
@@ -514,6 +612,12 @@
             gap: 1rem;
         }
 
+        @media (max-width: 768px) {
+            .quantity-controls {
+                justify-content: center;
+            }
+        }
+
         .quantity-btn {
             width: 40px;
             height: 40px;
@@ -529,6 +633,13 @@
             flex-shrink: 0;
         }
 
+        @media (max-width: 768px) {
+            .quantity-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
         .quantity-btn:hover {
             background: var(--primary);
             color: white;
@@ -542,11 +653,25 @@
             text-align: center;
         }
 
+        @media (max-width: 768px) {
+            .quantity-display {
+                font-size: 1.1rem;
+            }
+        }
+
         .quantity-price-container {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             margin-left: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .quantity-price-container {
+                justify-content: center;
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
         }
 
         .quantity-price-input {
@@ -560,12 +685,18 @@
             background: white;
         }
 
+        @media (max-width: 768px) {
+            .quantity-price-input {
+                width: 70px;
+            }
+        }
+
         .quantity-price-input:focus {
             outline: none;
             border-color: var(--primary);
         }
 
-        /* === RESUMEN DE PEDIDO - NUEVO DISEÑO === */
+        /* === RESUMEN DE PEDIDO === */
         .order-summary {
             background: var(--surface);
             border-radius: 12px;
@@ -704,7 +835,7 @@
             color: var(--primary);
         }
 
-        /* === FORMULARIO DE CLIENTE MEJORADO - NUEVO DISEÑO === */
+        /* === FORMULARIO DE CLIENTE === */
         .form-section {
             display: none;
             background: var(--surface);
@@ -825,7 +956,6 @@
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
         }
 
-        /* MEJORA: Botones del formulario responsivos */
         .form-actions {
             display: flex;
             gap: 1rem;
@@ -882,11 +1012,6 @@
             margin-bottom: 16px;
         }
 
-        .security-banner-icon {
-            font-size: clamp(18px, 4.5vw, 24px);
-            flex-shrink: 0;
-        }
-
         .security-banner-content h4 {
             font-size: clamp(12px, 3vw, 14px);
             font-weight: 700;
@@ -910,11 +1035,6 @@
             align-items: center;
             gap: clamp(6px, 2vw, 10px);
             margin-top: 12px;
-        }
-
-        .info-banner-icon {
-            font-size: clamp(18px, 4.5vw, 24px);
-            flex-shrink: 0;
         }
 
         .info-banner-content h4 {
@@ -965,7 +1085,7 @@
             color: var(--text-light);
         }
 
-        /* === MODAL FINAL - NUEVO DISEÑO === */
+        /* === MODAL FINAL === */
         .final-summary-modal {
             position: fixed;
             top: 0;
@@ -975,17 +1095,16 @@
             background: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* CAMBIO: evitar centrar verticalmente en móvil para no romper el scroll */
+            align-items: flex-start;
             z-index: 200;
             visibility: hidden;
             opacity: 0;
             transition: all 0.2s ease;
             padding: 12px;
-            overflow-y: auto; /* permitir scroll cuando el contenido excede la altura de la ventana */
-            -webkit-overflow-scrolling: touch; /* mejor scroll en iOS */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
-        /* Mantener centrado vertical en pantallas grandes (desktop) */
         @media (min-width: 768px) {
             .final-summary-modal {
                 align-items: center;
@@ -1006,8 +1125,6 @@
             padding: clamp(14px, 4vw, 24px);
             width: 100%;
             max-width: 600px;
-            max-height: 92vh;
-            overflow-y: auto;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
@@ -1026,347 +1143,6 @@
             font-weight: 500;
         }
 
-        .summary-section {
-            background: #F8FAFC;
-            border-radius: 6px;
-            padding: clamp(10px, 2.5vw, 14px);
-            margin-bottom: 10px;
-            border: 1px solid #E2E8F0;
-        }
-
-        .summary-section-title {
-            display: flex;
-            align-items: center;
-            gap: clamp(6px, 1.5vw, 10px);
-            font-size: clamp(13px, 3.5vw, 16px);
-            font-weight: 700;
-            color: #1E293B;
-            margin-bottom: 8px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #E2E8F0;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            padding: 8px;
-            border-radius: 6px;
-            flex-wrap: wrap;
-        }
-
-        .summary-section-title:hover {
-            background: #F1F5F9;
-        }
-
-        .summary-section-title .edit-icon {
-            margin-left: auto;
-            font-size: clamp(12px, 3vw, 14px);
-            color: #64748B;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .summary-section-title:hover .edit-icon {
-            opacity: 1;
-        }
-
-        .edit-icon-text {
-            font-size: clamp(10px, 2.5vw, 12px);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid #E2E8F0;
-            gap: 0.5rem;
-        }
-
-        .summary-item:last-child {
-            border-bottom: none;
-        }
-
-        .summary-item-label {
-            font-size: clamp(12px, 3vw, 14px);
-            color: #64748B;
-            font-weight: 600;
-            flex: 1;
-        }
-
-        .summary-item-value {
-            font-size: clamp(13px, 3.5vw, 15px);
-            color: #1E293B;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .activation-fee-highlight {
-            background: #FEF3C7;
-            border: 2px solid #F59E0B;
-            border-radius: 6px;
-            padding: clamp(10px, 2.5vw, 14px);
-            margin-bottom: 10px;
-        }
-
-        .activation-fee-highlight .summary-item-label,
-        .activation-fee-highlight .summary-item-value {
-            color: #92400E;
-            font-weight: 800;
-        }
-
-        .summary-total {
-            background: #F8FAFC;
-            border: 2px solid #E2E8F0;
-            border-radius: 6px;
-            padding: clamp(12px, 3vw, 16px);
-            margin-top: 14px;
-            margin-bottom: 14px;
-            text-align: center;
-        }
-
-        .summary-total-label {
-            font-size: clamp(9px, 2.2vw, 11px);
-            font-weight: 700;
-            color: #64748B;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .summary-total-value {
-            font-size: clamp(1.5rem, 6vw, 2rem);
-            font-weight: 900;
-            color: #1E3A8A;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .summary-total-per-person {
-            background: #EFF6FF;
-            border: 1px solid #BFDBFE;
-            border-radius: 6px;
-            padding: 8px;
-            text-align: center;
-            font-weight: 700;
-            font-size: clamp(12px, 3vw, 14px);
-            color: #1E40AF;
-            margin-top: 10px;
-        }
-
-        .summary-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        .summary-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 18px);
-            border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: clamp(13px, 3vw, 15px);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 44px;
-        }
-
-        .summary-btn-cancel {
-            background: #F1F5F9;
-            color: #475569;
-            border: 2px solid #E2E8F0;
-        }
-
-        .summary-btn-cancel:hover {
-            background: #E2E8F0;
-        }
-
-        .summary-btn-send {
-            background: #10B981;
-            color: white;
-        }
-
-        .summary-btn-send:hover {
-            background: #059669;
-        }
-
-        /* === MEJORAS ESPECÍFICAS PARA LOS PROBLEMAS MENCIONADOS === */
-        
-        /* 1. Ajuste del solicitante - iconos y descripciones mejor espaciados */
-        .form-card-header {
-            align-items: flex-start;
-        }
-        
-        .form-card-title {
-            margin-top: 4px;
-        }
-        
-        /* 2. Texto descriptivo que se oculta automáticamente */
-        .module-description {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            transition: opacity 0.3s ease;
-        }
-        
-        .service-module:not(.active) .module-description {
-            opacity: 0;
-            height: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-        
-        /* 3. Mejoras en las fechas */
-        .date-selector input[type="date"] {
-            min-height: 44px;
-        }
-        
-        /* 4. Ajuste del tamaño del total */
-        .summary-total-value {
-            font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
-        }
-        
-        /* 5. Mejor espaciado general */
-        .service-module {
-            padding: 1.25rem;
-        }
-        
-        .module-options {
-            gap: 0.75rem;
-        }
-        
-        .module-option {
-            padding: 0.75rem;
-        }
-        
-        /* 6. Mejoras de responsividad móvil */
-        @media (max-width: 768px) {
-            .module-options {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .quantity-item {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: stretch;
-            }
-            
-            .quantity-controls {
-                justify-content: center;
-            }
-            
-            .quantity-price-container {
-                justify-content: center;
-                margin-left: 0;
-            }
-            
-            .form-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .form-input-group {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Añadir más espacio en móviles para el carrito */
-            .form-section.active {
-                padding-bottom: 120px !important;
-            }
-            
-            /* Mejoras específicas para móviles */
-            .module-header {
-                flex-wrap: wrap;
-            }
-            
-            .module-title-container {
-                flex-wrap: wrap;
-            }
-            
-            .module-title {
-                font-size: 1.1rem;
-            }
-            
-            .module-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.25rem;
-            }
-            
-            .module-subtotal {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.8rem;
-            }
-            
-            .module-toggle {
-                width: 50px;
-                height: 28px;
-            }
-            
-            .module-toggle::after {
-                width: 20px;
-                height: 20px;
-                top: 4px;
-                left: 4px;
-            }
-            
-            .module-toggle.active::after {
-                left: 26px;
-            }
-            
-            .service-module {
-                padding: 1rem;
-            }
-            
-            .quantity-item {
-                padding: 0.75rem;
-            }
-            
-            .quantity-btn {
-                width: 36px;
-                height: 36px;
-            }
-            
-            .quantity-display {
-                font-size: 1.1rem;
-            }
-            
-            .quantity-price-input {
-                width: 70px;
-            }
-            
-            .form-card {
-                padding: 1rem;
-            }
-            
-            .form-input-wrapper {
-                margin-bottom: 10px;
-            }
-            
-            .form-input-icon {
-                left: 10px;
-            }
-            
-            .form-input {
-                padding-left: 40px !important;
-            }
-
-            .header-info {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-
         /* === ANIMACIONES === */
         .fade-in {
             animation: fadeIn 0.5s ease;
@@ -1381,9 +1157,8 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        
-        /* === ESTILOS ADICIONALES PARA MEJORAR LA EXPERIENCIA === */
-        
+
+        /* === UTILIDADES === */
         .error-message {
             color: #EF4444;
             font-size: 0.8rem;
@@ -1415,44 +1190,6 @@
             color: #1E293B;
         }
         
-        /* REMOVER EL RESUMEN DEL FORMULARIO DEL SOLICITANTE */
-        .order-summary-form {
-            display: none !important;
-        }
-
-        /* === NUEVOS ESTILOS PARA EL DISEÑO MEJORADO === */
-        .service-card {
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            border: 2px solid transparent;
-            position: relative;
-        }
-
-        .service-card.selected {
-            border-color: var(--secondary);
-            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3), 0 2px 4px -2px rgba(16, 185, 129, 0.3);
-        }
-
-        .service-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #D1D5DB;
-            border-radius: 0.5rem;
-            margin-top: 0.25rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: var(--primary-light);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-
         /* Esconder las flechas de los number inputs */
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
@@ -1462,21 +1199,65 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            margin-top: 0.25rem;
+            transition: border-color 0.3s;
+            padding-left: 40px !important;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-light);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .check-icon {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: var(--secondary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .module-option.selected .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
     </style>
 </head>
 <body>
-    <!-- Header Mejorado -->
+    <!-- Header Corregido -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
+        <div class="header-container">
+            <div class="header-grid">
+                <!-- Logo -->
+                <div class="logo-container">
                     <img src="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png" alt="TeEchoUnaMano Logo" class="logo-img">
                     <div class="logo-text">
                         <h1>TeEchoUnaMano TUM</h1>
                         <p>Servicios de Limpieza Profesional</p>
                     </div>
                 </div>
-                <div class="header-info">
+
+                <!-- Estadísticas -->
+                <div class="header-stats">
                     <div class="people-count">
                         <span id="header-people-count">1 Persona</span>
                     </div>
@@ -1485,9 +1266,13 @@
                         <span id="header-total-cost">10€</span>
                     </div>
                 </div>
-                <a href="https://tumgo.blogspot.com/" target="_blank" rel="noopener noreferrer" class="header-link">
-                    TUMgo Accesos
-                </a>
+
+                <!-- Enlace -->
+                <div class="header-link-container">
+                    <a href="https://tumgo.blogspot.com/" target="_blank" rel="noopener noreferrer" class="header-link">
+                        TUMgo Accesos
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -2001,8 +1786,7 @@
                     
                     <div class="form-input-wrapper">
                         <div class="form-input-icon">✍️</div>
-                        <!-- CORRECCIÓN: Eliminado el atributo required -->
-                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" style="padding-left: 40px;">
+                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo">
                         <div class="error-message" id="errorNombre">Por favor, ingresa tu nombre completo</div>
                     </div>
                 </div>
@@ -2015,30 +1799,26 @@
                     
                     <div class="form-input-wrapper">
                         <div class="form-input-icon">📍</div>
-                        <!-- CORRECCIÓN: Eliminado el atributo required -->
-                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)" style="padding-left: 40px;">
+                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)">
                         <div class="error-message" id="errorCalle">Por favor, ingresa la calle y número</div>
                     </div>
 
                     <div class="form-input-group">
                         <div class="form-input-wrapper">
                             <div class="form-input-icon">🚪</div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="text" id="portal" class="form-input" placeholder="Portal" style="padding-left: 40px;">
+                            <input type="text" id="portal" class="form-input" placeholder="Portal">
                             <div class="error-message" id="errorPortal">Requerido</div>
                         </div>
 
                         <div class="form-input-wrapper">
                             <div class="form-input-icon">🔢</div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="text" id="piso" class="form-input" placeholder="Piso" style="padding-left: 40px;">
+                            <input type="text" id="piso" class="form-input" placeholder="Piso">
                             <div class="error-message" id="errorPiso">Requerido</div>
                         </div>
 
                         <div class="form-input-wrapper">
                             <div class="form-input-icon">🚪</div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="text" id="puerta" class="form-input" placeholder="Puerta" style="padding-left: 40px;">
+                            <input type="text" id="puerta" class="form-input" placeholder="Puerta">
                             <div class="error-message" id="errorPuerta">Requerido</div>
                         </div>
                     </div>
@@ -2066,7 +1846,6 @@
                                 <span>📆</span>
                                 <span>Primera opción</span>
                             </div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
                             <input type="date" id="fecha1">
                             <div class="error-message" id="errorFecha1">Selecciona la primera fecha</div>
                         </div>
@@ -2076,7 +1855,6 @@
                                 <span>📆</span>
                                 <span>Segunda opción</span>
                             </div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
                             <input type="date" id="fecha2">
                             <div class="error-message" id="errorFecha2">Selecciona la segunda fecha</div>
                         </div>
@@ -2268,7 +2046,6 @@
                 'cristal-balconeras': 10,
                 'cristal-escaparates': 10
             },
-            // Nuevo estado para controlar qué categorías están activas
             activeCategories: {
                 areas: true,
                 complements: true,
@@ -2413,7 +2190,7 @@
             // Inputs de precio para opciones normales
             document.querySelectorAll('.price-input').forEach(input => {
                 input.addEventListener('input', function() {
-                    const service = this.closest('.module-option').dataset.service;
+                    const service = input.closest('.module-option').dataset.service;
                     const price = parseFloat(this.value) || 0;
                     
                     // Actualizar precio en el estado
@@ -3197,11 +2974,12 @@
             });
         }
 
-        // Manejar envío del formulario - CORRECCIÓN: Eliminada la validación
+        // Manejar envío del formulario
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // CORRECCIÓN: Ya no hay validación de campos requeridos
+            // Validación de campos
+            let isValid = true;
             const nombre = document.getElementById('nombre').value.trim();
             const calle = document.getElementById('calle').value.trim();
             const portal = document.getElementById('portal').value.trim();
@@ -3209,6 +2987,75 @@
             const puerta = document.getElementById('puerta').value.trim();
             const fecha1 = document.getElementById('fecha1').value;
             const fecha2 = document.getElementById('fecha2').value;
+
+            // Validar campos
+            if (!nombre) {
+                document.getElementById('errorNombre').classList.add('show');
+                document.getElementById('nombre').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorNombre').classList.remove('show');
+                document.getElementById('nombre').classList.remove('error');
+            }
+
+            if (!calle) {
+                document.getElementById('errorCalle').classList.add('show');
+                document.getElementById('calle').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorCalle').classList.remove('show');
+                document.getElementById('calle').classList.remove('error');
+            }
+
+            if (!portal) {
+                document.getElementById('errorPortal').classList.add('show');
+                document.getElementById('portal').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorPortal').classList.remove('show');
+                document.getElementById('portal').classList.remove('error');
+            }
+
+            if (!piso) {
+                document.getElementById('errorPiso').classList.add('show');
+                document.getElementById('piso').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorPiso').classList.remove('show');
+                document.getElementById('piso').classList.remove('error');
+            }
+
+            if (!puerta) {
+                document.getElementById('errorPuerta').classList.add('show');
+                document.getElementById('puerta').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorPuerta').classList.remove('show');
+                document.getElementById('puerta').classList.remove('error');
+            }
+
+            if (!fecha1) {
+                document.getElementById('errorFecha1').classList.add('show');
+                document.getElementById('fecha1').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorFecha1').classList.remove('show');
+                document.getElementById('fecha1').classList.remove('error');
+            }
+
+            if (!fecha2) {
+                document.getElementById('errorFecha2').classList.add('show');
+                document.getElementById('fecha2').classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('errorFecha2').classList.remove('show');
+                document.getElementById('fecha2').classList.remove('error');
+            }
+
+            if (!isValid) {
+                alert('Por favor, completa todos los campos requeridos.');
+                return;
+            }
 
             const direccion = `${calle}, Portal ${portal}, Piso ${piso}, Puerta ${puerta}`;
 
