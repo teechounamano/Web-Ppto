@@ -98,6 +98,14 @@ const cancelFinalSummaryButton = document.getElementById('cancel-final-summary-b
 document.addEventListener('DOMContentLoaded', () => {
     initializeEventListeners();
     updateUI();
+    
+    // Agregar listener para cerrar modal al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (finalSummaryModal.classList.contains('open') && 
+            e.target === finalSummaryModal) {
+            finalSummaryModal.classList.remove('open');
+        }
+    });
 });
 
 // Configurar event listeners
@@ -1111,6 +1119,9 @@ function showFinalSummary() {
 
     // Mostrar el modal de resumen final
     finalSummaryModal.classList.add('open');
+    
+    // Scroll al inicio del modal
+    finalSummaryModal.querySelector('.final-summary-content').scrollTop = 0;
 }
 
 // Función para editar secciones
@@ -1341,50 +1352,3 @@ function sendWhatsAppMessage() {
         resetOrder();
     }, 500);
 }
-
-// Añadir estilos para el formulario modal
-const style = document.createElement('style');
-style.textContent = `
-    .final-summary-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        z-index: 200;
-        visibility: hidden;
-        opacity: 0;
-        transition: all 0.2s ease;
-        padding: 12px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .final-summary-modal.open {
-        visibility: visible;
-        opacity: 1;
-    }
-    
-    .final-summary-content {
-        max-height: 92vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        background: white;
-        border-radius: 8px;
-        padding: clamp(14px, 4vw, 24px);
-        width: 100%;
-        max-width: 600px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    }
-    
-    @media (min-width: 768px) {
-        .final-summary-modal {
-            align-items: center;
-        }
-    }
-`;
-document.head.appendChild(style);
