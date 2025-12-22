@@ -31,6 +31,7 @@
             --border: #E2E8F0;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --disabled: #CBD5E1;
         }
 
         body {
@@ -231,6 +232,18 @@
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
         }
 
+        /* Estilo para módulos desactivados */
+        .service-module.disabled {
+            opacity: 0.7;
+            background: #F8FAFC;
+            border-color: var(--disabled);
+        }
+
+        .service-module.disabled:hover {
+            transform: none;
+            box-shadow: var(--shadow);
+        }
+
         .section-heading {
             border-left: 5px solid var(--primary);
             padding-left: 1rem;
@@ -265,6 +278,10 @@
             color: var(--text);
         }
 
+        .service-module.disabled .module-title {
+            color: var(--text-light);
+        }
+
         .module-icon {
             font-size: 1.5rem;
             width: 48px;
@@ -275,6 +292,11 @@
             background: var(--background);
             border-radius: 8px;
             flex-shrink: 0;
+        }
+
+        .service-module.disabled .module-icon {
+            background: var(--gray-light);
+            color: var(--disabled);
         }
 
         .module-subtotal {
@@ -290,8 +312,16 @@
             flex-shrink: 0;
         }
 
-        .service-module:not(.active) .module-subtotal {
-            background: var(--secondary);
+        /* CORRECCIÓN: Módulo activo - subtotal azul */
+        .service-module:not(.disabled) .module-subtotal {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* CORRECCIÓN: Módulo desactivado - subtotal gris */
+        .service-module.disabled .module-subtotal {
+            background: var(--disabled);
+            color: var(--text-light);
         }
 
         .module-toggle {
@@ -2974,7 +3004,14 @@
             areasRealSubtotal += state.habitacionCount * state.customPrices.habitacion;
             
             areasSubtotalDisplay.textContent = `${areasRealSubtotal}€`;
-            areasSubtotalDisplay.classList.toggle('zero', areasRealSubtotal === 0);
+            // CORRECCIÓN: Actualizar clase según si la categoría está activa o no
+            if (state.activeCategories.areas) {
+                areasSubtotalDisplay.style.backgroundColor = 'var(--primary)';
+                areasSubtotalDisplay.style.color = 'white';
+            } else {
+                areasSubtotalDisplay.style.backgroundColor = 'var(--disabled)';
+                areasSubtotalDisplay.style.color = 'var(--text-light)';
+            }
 
             // Calcular subtotal REAL de Complementos
             let complementsRealSubtotal = 0;
@@ -2984,7 +3021,14 @@
             if (state.selectedServices.basura) complementsRealSubtotal += state.selectedServices.basura.price;
             
             complementsSubtotalDisplay.textContent = `${complementsRealSubtotal}€`;
-            complementsSubtotalDisplay.classList.toggle('zero', complementsRealSubtotal === 0);
+            // CORRECCIÓN: Actualizar clase según si la categoría está activa o no
+            if (state.activeCategories.complements) {
+                complementsSubtotalDisplay.style.backgroundColor = 'var(--primary)';
+                complementsSubtotalDisplay.style.color = 'white';
+            } else {
+                complementsSubtotalDisplay.style.backgroundColor = 'var(--disabled)';
+                complementsSubtotalDisplay.style.color = 'var(--text-light)';
+            }
 
             // Calcular subtotal REAL de Electrodomésticos
             let electrodomesticosRealSubtotal = 0;
@@ -2993,7 +3037,14 @@
             if (state.selectedServices.campana) electrodomesticosRealSubtotal += state.selectedServices.campana.price;
             
             electrodomesticosSubtotalDisplay.textContent = `${electrodomesticosRealSubtotal}€`;
-            electrodomesticosSubtotalDisplay.classList.toggle('zero', electrodomesticosRealSubtotal === 0);
+            // CORRECCIÓN: Actualizar clase según si la categoría está activa o no
+            if (state.activeCategories.electrodomesticos) {
+                electrodomesticosSubtotalDisplay.style.backgroundColor = 'var(--primary)';
+                electrodomesticosSubtotalDisplay.style.color = 'white';
+            } else {
+                electrodomesticosSubtotalDisplay.style.backgroundColor = 'var(--disabled)';
+                electrodomesticosSubtotalDisplay.style.color = 'var(--text-light)';
+            }
 
             // Calcular subtotal REAL de Cristales
             let windowsRealSubtotal = 0;
@@ -3010,7 +3061,14 @@
             windowsRealSubtotal += state.cristalMesaCount * state.customPrices['cristal-mesa'];
             
             windowsSubtotalDisplay.textContent = `${windowsRealSubtotal}€`;
-            windowsSubtotalDisplay.classList.toggle('zero', windowsRealSubtotal === 0);
+            // CORRECCIÓN: Actualizar clase según si la categoría está activa o no
+            if (state.activeCategories.windows) {
+                windowsSubtotalDisplay.style.backgroundColor = 'var(--primary)';
+                windowsSubtotalDisplay.style.color = 'white';
+            } else {
+                windowsSubtotalDisplay.style.backgroundColor = 'var(--disabled)';
+                windowsSubtotalDisplay.style.color = 'var(--text-light)';
+            }
 
             // Calcular subtotal REAL de Servicios Especiales
             let specialRealSubtotal = 0;
@@ -3020,7 +3078,14 @@
             if (state.selectedServices.organizacion) specialRealSubtotal += state.selectedServices.organizacion.price;
             
             specialSubtotalDisplay.textContent = `${specialRealSubtotal}€`;
-            specialSubtotalDisplay.classList.toggle('zero', specialRealSubtotal === 0);
+            // CORRECCIÓN: Actualizar clase según si la categoría está activa o no
+            if (state.activeCategories.special) {
+                specialSubtotalDisplay.style.backgroundColor = 'var(--primary)';
+                specialSubtotalDisplay.style.color = 'white';
+            } else {
+                specialSubtotalDisplay.style.backgroundColor = 'var(--disabled)';
+                specialSubtotalDisplay.style.color = 'var(--text-light)';
+            }
         }
 
         // Actualizar resumen de pedido
