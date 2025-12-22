@@ -1249,8 +1249,53 @@
             padding: 0.75rem;
         }
         
-        /* 6. Mejoras de responsividad móvil */
+        /* 6. MEJORAS DE RESPONSIVIDAD MÓVIL - ARREGLADO EL HEADER */
         @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+            
+            .logo {
+                order: 1;
+                flex: 1 1 100%;
+                justify-content: center;
+                margin-bottom: 8px;
+            }
+            
+            .logo-text h1 {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+                text-align: center;
+            }
+            
+            .logo-text p {
+                font-size: clamp(10px, 2.5vw, 13px);
+                text-align: center;
+            }
+            
+            .header-info {
+                order: 2;
+                flex: 1 1 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 8px;
+            }
+            
+            .people-count, .header-total {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            
+            .header-link {
+                order: 3;
+                padding: 8px 12px;
+                font-size: clamp(11px, 2.5vw, 14px);
+                min-height: 36px;
+            }
+            
+            /* Ajustes para los módulos en móviles */
             .module-options {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1360,10 +1405,15 @@
             .form-input {
                 padding-left: 40px !important;
             }
-
-            .header-info {
-                flex-direction: column;
-                gap: 0.5rem;
+            
+            /* Ajustes específicos para los nuevos campos de cristales */
+            .cristales-subsection {
+                margin-bottom: 1rem;
+            }
+            
+            .cristales-subsection-title {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
             }
         }
 
@@ -1461,6 +1511,23 @@
         }
         input[type=number] {
             -moz-appearance: textfield;
+        }
+        
+        /* === ESTILOS PARA LAS NUEVAS SECCIONES DE CRISTALES === */
+        .cristales-subsection {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cristales-subsection-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
     </style>
 </head>
@@ -1861,6 +1928,44 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- NUEVA SECCIÓN: Puertas con Cristal y Mesa de Cristal -->
+                        <div class="cristales-subsection">
+                            <h4 class="cristales-subsection-title">🚪➕📊 Cristales Adicionales</h4>
+                            <div class="quantity-controls-special">
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">🚪</span>
+                                        <span class="quantity-item-name">Puertas con Cristal</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-puertas-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-puertas-count">0</span>
+                                        <button class="quantity-btn" id="cristal-puertas-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-puertas-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-item">
+                                    <div class="quantity-item-info">
+                                        <span class="quantity-item-icon">📊</span>
+                                        <span class="quantity-item-name">Mesa de Cristal</span>
+                                    </div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" id="cristal-mesa-decrement">-</button>
+                                        <span class="quantity-display" id="cristal-mesa-count">0</span>
+                                        <button class="quantity-btn" id="cristal-mesa-increment">+</button>
+                                    </div>
+                                    <div class="quantity-price-container">
+                                        <input type="number" class="quantity-price-input" id="cristal-mesa-price" value="10" min="0" step="0.5">
+                                        <span class="price-symbol">€</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2226,7 +2331,7 @@
     </div>
 
     <script>
-        // Estado de la aplicación
+        // Estado de la aplicación - AÑADIDOS LOS NUEVOS CAMPOS
         const state = {
             activationFee: 10,
             selectedServices: {},
@@ -2243,6 +2348,9 @@
             cristalLavanderiaCount: 0,
             cristalBalconerasCount: 0,
             cristalEscaparatesCount: 0,
+            // NUEVOS CAMPOS AÑADIDOS
+            cristalPuertasCount: 0,
+            cristalMesaCount: 0,
             customPrices: {
                 salon: 10,
                 cocina: 10,
@@ -2266,7 +2374,10 @@
                 'cristal-terraza': 10,
                 'cristal-lavanderia': 10,
                 'cristal-balconeras': 10,
-                'cristal-escaparates': 10
+                'cristal-escaparates': 10,
+                // NUEVOS PRECIOS AÑADIDOS
+                'cristal-puertas': 10,
+                'cristal-mesa': 10
             },
             // Nuevo estado para controlar qué categorías están activas
             activeCategories: {
@@ -2296,6 +2407,9 @@
         const cristalLavanderiaCountDisplay = document.getElementById('cristal-lavanderia-count');
         const cristalBalconerasCountDisplay = document.getElementById('cristal-balconeras-count');
         const cristalEscaparatesCountDisplay = document.getElementById('cristal-escaparates-count');
+        // NUEVOS ELEMENTOS DEL DOM AÑADIDOS
+        const cristalPuertasCountDisplay = document.getElementById('cristal-puertas-count');
+        const cristalMesaCountDisplay = document.getElementById('cristal-mesa-count');
         
         // Elementos de subtotales
         const areasSubtotalDisplay = document.getElementById('areas-subtotal');
@@ -2706,6 +2820,60 @@
                 updateUI();
             });
 
+            // NUEVOS CONTROLES PARA PUERTAS CON CRISTAL
+            document.getElementById('cristal-puertas-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalPuertasCount++;
+                    updateCristalPuertasCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-puertas-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalPuertasCount > 0) {
+                    state.cristalPuertasCount--;
+                    updateCristalPuertasCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para puertas con cristal
+            document.getElementById('cristal-puertas-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-puertas'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
+            // NUEVOS CONTROLES PARA MESA DE CRISTAL
+            document.getElementById('cristal-mesa-increment').addEventListener('click', () => {
+                if (state.activeCategories.windows) {
+                    state.cristalMesaCount++;
+                    updateCristalMesaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            document.getElementById('cristal-mesa-decrement').addEventListener('click', () => {
+                if (state.activeCategories.windows && state.cristalMesaCount > 0) {
+                    state.cristalMesaCount--;
+                    updateCristalMesaCount();
+                    calculateTotal();
+                    updateUI();
+                }
+            });
+
+            // Input de precio para mesa de cristal
+            document.getElementById('cristal-mesa-price').addEventListener('input', function() {
+                const price = parseFloat(this.value) || 0;
+                state.customPrices['cristal-mesa'] = price;
+                calculateTotal();
+                updateUI();
+            });
+
             // Controles de compañeros
             document.getElementById('roommates-increment').addEventListener('click', () => {
                 state.roommatesCount++;
@@ -2735,7 +2903,9 @@
                     state.cristalTerrazaCount === 0 &&
                     state.cristalLavanderiaCount === 0 &&
                     state.cristalBalconerasCount === 0 &&
-                    state.cristalEscaparatesCount === 0) {
+                    state.cristalEscaparatesCount === 0 &&
+                    state.cristalPuertasCount === 0 &&
+                    state.cristalMesaCount === 0) {
                     alert('Por favor, selecciona al menos un servicio antes de continuar.');
                     return;
                 }
@@ -2835,6 +3005,9 @@
             windowsRealSubtotal += state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
             windowsRealSubtotal += state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
             windowsRealSubtotal += state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+            // NUEVOS CAMPOS AÑADIDOS AL SUBTOTAL
+            windowsRealSubtotal += state.cristalPuertasCount * state.customPrices['cristal-puertas'];
+            windowsRealSubtotal += state.cristalMesaCount * state.customPrices['cristal-mesa'];
             
             windowsSubtotalDisplay.textContent = `${windowsRealSubtotal}€`;
             windowsSubtotalDisplay.classList.toggle('zero', windowsRealSubtotal === 0);
@@ -2993,6 +3166,30 @@
                 `;
                 summaryItems.appendChild(item);
             }
+            
+            // NUEVO: Añadir puertas con cristal si hay y la categoría está activa
+            if (state.cristalPuertasCount > 0 && state.activeCategories.windows) {
+                const cristalPuertasTotal = state.cristalPuertasCount * state.customPrices['cristal-puertas'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">🚪 Puertas con Cristal (${state.cristalPuertasCount} x ${state.customPrices['cristal-puertas']}€)</span>
+                    <span class="summary-item-price">${cristalPuertasTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
+            
+            // NUEVO: Añadir mesa de cristal si hay y la categoría está activa
+            if (state.cristalMesaCount > 0 && state.activeCategories.windows) {
+                const cristalMesaTotal = state.cristalMesaCount * state.customPrices['cristal-mesa'];
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `
+                    <span class="summary-item-name">📊 Mesa de Cristal (${state.cristalMesaCount} x ${state.customPrices['cristal-mesa']}€)</span>
+                    <span class="summary-item-price">${cristalMesaTotal}€</span>
+                `;
+                summaryItems.appendChild(item);
+            }
         }
 
         // Obtener categoría a partir del servicio
@@ -3056,6 +3253,15 @@
             cristalEscaparatesCountDisplay.textContent = state.cristalEscaparatesCount;
         }
 
+        // NUEVAS FUNCIONES PARA ACTUALIZAR CONTADORES
+        function updateCristalPuertasCount() {
+            cristalPuertasCountDisplay.textContent = state.cristalPuertasCount;
+        }
+
+        function updateCristalMesaCount() {
+            cristalMesaCountDisplay.textContent = state.cristalMesaCount;
+        }
+
         function updateRoommatesCount() {
             roommatesCountDisplay.textContent = state.roommatesCount;
         }
@@ -3102,6 +3308,9 @@
                 subtotal += state.cristalLavanderiaCount * state.customPrices['cristal-lavanderia'];
                 subtotal += state.cristalBalconerasCount * state.customPrices['cristal-balconeras'];
                 subtotal += state.cristalEscaparatesCount * state.customPrices['cristal-escaparates'];
+                // NUEVOS CAMPOS AÑADIDOS AL CÁLCULO
+                subtotal += state.cristalPuertasCount * state.customPrices['cristal-puertas'];
+                subtotal += state.cristalMesaCount * state.customPrices['cristal-mesa'];
             }
             
             state.totalCost = subtotal;
@@ -3121,6 +3330,9 @@
             state.cristalLavanderiaCount = 0;
             state.cristalBalconerasCount = 0;
             state.cristalEscaparatesCount = 0;
+            // NUEVOS CAMPOS REINICIADOS
+            state.cristalPuertasCount = 0;
+            state.cristalMesaCount = 0;
             state.roommatesCount = 1;
             state.totalCost = state.activationFee;
             state.costPerPerson = state.activationFee;
@@ -3170,6 +3382,9 @@
             document.getElementById('cristal-lavanderia-price').value = state.customPrices['cristal-lavanderia'];
             document.getElementById('cristal-balconeras-price').value = state.customPrices['cristal-balconeras'];
             document.getElementById('cristal-escaparates-price').value = state.customPrices['cristal-escaparates'];
+            // NUEVOS PRECIOS REESTABLECIDOS
+            document.getElementById('cristal-puertas-price').value = state.customPrices['cristal-puertas'];
+            document.getElementById('cristal-mesa-price').value = state.customPrices['cristal-mesa'];
             
             // Actualizar todos los contadores
             updateBanoCount();
@@ -3182,6 +3397,9 @@
             updateCristalLavanderiaCount();
             updateCristalBalconerasCount();
             updateCristalEscaparatesCount();
+            // NUEVOS CONTADORES ACTUALIZADOS
+            updateCristalPuertasCount();
+            updateCristalMesaCount();
             updateRoommatesCount();
             updateUI();
         }
@@ -3359,6 +3577,30 @@
                 servicesList.appendChild(itemDiv);
             }
 
+            // NUEVO: Añadir puertas con cristal si hay
+            if (state.cristalPuertasCount > 0 && state.activeCategories.windows) {
+                const cristalPuertasTotal = state.cristalPuertasCount * state.customPrices['cristal-puertas'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Puertas con Cristal (${state.cristalPuertasCount} x ${state.customPrices['cristal-puertas']}€)</span>
+                    <span class="summary-item-value">${cristalPuertasTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
+            // NUEVO: Añadir mesa de cristal si hay
+            if (state.cristalMesaCount > 0 && state.activeCategories.windows) {
+                const cristalMesaTotal = state.cristalMesaCount * state.customPrices['cristal-mesa'];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <span class="summary-item-label">Mesa de Cristal (${state.cristalMesaCount} x ${state.customPrices['cristal-mesa']}€)</span>
+                    <span class="summary-item-value">${cristalMesaTotal} €</span>
+                `;
+                servicesList.appendChild(itemDiv);
+            }
+
             // Mostrar el modal de resumen final
             finalSummaryModal.classList.add('open');
         }
@@ -3456,6 +3698,17 @@
                 message += `• Escaparates (${state.cristalEscaparatesCount} x ${state.customPrices['cristal-escaparates']}€): ${cristalEscaparatesTotal}€\n`;
             }
             
+            // NUEVOS CAMPOS AÑADIDOS AL MENSAJE DE WHATSAPP
+            if (state.cristalPuertasCount > 0 && state.activeCategories.windows) {
+                const cristalPuertasTotal = state.cristalPuertasCount * state.customPrices['cristal-puertas'];
+                message += `• Puertas con Cristal (${state.cristalPuertasCount} x ${state.customPrices['cristal-puertas']}€): ${cristalPuertasTotal}€\n`;
+            }
+            
+            if (state.cristalMesaCount > 0 && state.activeCategories.windows) {
+                const cristalMesaTotal = state.cristalMesaCount * state.customPrices['cristal-mesa'];
+                message += `• Mesa de Cristal (${state.cristalMesaCount} x ${state.customPrices['cristal-mesa']}€): ${cristalMesaTotal}€\n`;
+            }
+            
             message += `\nDETALLE DE COSTES\n`;
             message += `• Cuota de activación: ${state.activationFee}€\n`;
             message += `• Número de compañeros: ${state.roommatesCount}\n`;
@@ -3494,4 +3747,3 @@
     </script>
 </body>
 </html>
-
