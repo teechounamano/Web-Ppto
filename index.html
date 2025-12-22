@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Constructor modular de servicios de limpieza - Personaliza tu limpieza según tus necesidades">
+    <meta name="description" content="Sistema de Presupuestos de servicios de limpieza.">
     <link rel="icon" type="image/png" href="https://i.ibb.co/HTyGwGhP/TUMSIN-FONDO-1024-X1024.png">
-    <title>Constructor de Limpieza - TeEchoUnaMano TUM</title>
+    <title>Presupuesto TUM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,17 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ================================================================
-           DISEÑO MEJORADO - CONSTRUCTOR MODULAR DE LIMPIEZA
+           DISEÑO INNOVADOR - PPTO. DE LIMPIEZA
            ================================================================ */
 
         :root {
             --primary: #1E3A8A;
             --primary-light: #3B82F6;
             --secondary: #10B981;
-            --white: #ffffff;
-            --gray-light: #F3F4F6;
-            --gray-medium: #6B7280;
-            --text-color: #1F2937;
+            --accent: #F59E0B;
             --background: #F8FAFC;
             --surface: #FFFFFF;
             --text: #1E293B;
@@ -35,11 +32,11 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--gray-light);
-            color: var(--text-color);
+            background: var(--background);
             min-height: 100vh;
             font-size: clamp(15px, 4vw, 17px);
             line-height: 1.6;
+            color: var(--text);
             overflow-x: hidden;
         }
 
@@ -108,35 +105,6 @@
             font-weight: 500;
             word-wrap: break-word;
             overflow-wrap: break-word;
-        }
-
-        .header-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .people-count {
-            display: flex;
-            align-items: center;
-            background: var(--gray-light);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .header-total {
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: var(--shadow);
         }
 
         .header-link {
@@ -211,7 +179,7 @@
             height: fit-content;
         }
 
-        /* === MÓDULOS DE SERVICIOS - NUEVO DISEÑO === */
+        /* === MÓDULOS DE SERVICIOS === */
         .service-module {
             background: var(--surface);
             border-radius: 12px;
@@ -231,13 +199,10 @@
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
         }
 
-        .section-heading {
-            border-left: 5px solid var(--primary);
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
+        .service-module.disabled {
+            opacity: 0.6;
+            background: #f9fafb;
+            border-color: #e5e7eb;
         }
 
         .module-header {
@@ -294,6 +259,17 @@
             background: var(--secondary);
         }
 
+        /* CORRECCIÓN: Cuando el módulo está desactivado, mantener el texto legible */
+        .service-module.disabled .module-subtotal {
+            background: var(--text-light);
+            color: white;
+            opacity: 0.7;
+        }
+
+        .module-subtotal.zero {
+            background: var(--text-light);
+        }
+
         .module-toggle {
             width: 60px;
             height: 32px;
@@ -341,7 +317,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === OPCIONES DE MÓDULOS - DISEÑO MEJORADO === */
+        /* === OPCIONES DE MÓDULOS === */
         .module-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -349,7 +325,6 @@
             margin-bottom: 1rem;
         }
 
-        /* MEJORA: Diseño más profesional para las opciones seleccionadas */
         .module-option {
             background: var(--background);
             border: 2px solid var(--border);
@@ -370,33 +345,15 @@
             transform: translateY(-2px);
         }
 
-        /* MEJORA: Diseño más destacado para elementos seleccionados */
         .module-option.selected {
-            border-color: var(--secondary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            background: var(--background);
-            color: var(--text);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* MEJORA: Efecto sutil de fondo para elementos seleccionados */
-        .module-option.selected::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.1) 100%);
-            z-index: 0;
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
         .option-name {
             font-weight: 600;
             margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
         }
 
         .price-input-container {
@@ -406,8 +363,6 @@
             gap: 0.5rem;
             margin-top: 0.5rem;
             width: 100%;
-            position: relative;
-            z-index: 1;
         }
 
         .price-input {
@@ -423,9 +378,9 @@
         }
 
         .module-option.selected .price-input {
-            background: white;
-            color: var(--text);
-            border-color: var(--border);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .price-input:focus {
@@ -434,38 +389,12 @@
         }
 
         .module-option.selected .price-input:focus {
-            border-color: var(--primary);
+            border-color: white;
         }
 
         .price-symbol {
             font-weight: 700;
             color: inherit;
-        }
-
-        /* === ICONO DE VERIFICACIÓN - DISEÑO MEJORADO === */
-        .check-icon {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background-color: var(--secondary);
-            color: var(--white);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-        }
-
-        .module-option.selected .check-icon {
-            opacity: 1;
-            transform: scale(1);
         }
 
         /* === CONTROLES DE CANTIDAD ESPECIALES === */
@@ -485,11 +414,6 @@
             border-radius: 8px;
             border: 2px solid var(--border);
             gap: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .quantity-item:hover {
-            border-color: var(--primary-light);
         }
 
         .quantity-item-info {
@@ -565,7 +489,25 @@
             border-color: var(--primary);
         }
 
-        /* === RESUMEN DE PEDIDO - NUEVO DISEÑO === */
+        /* === SUB-SECCIONES PARA CRISTALES === */
+        .cristales-subsection {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+            border: 2px solid var(--border);
+        }
+
+        .cristales-subsection-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* === RESUMEN DE PEDIDO === */
         .order-summary {
             background: var(--surface);
             border-radius: 12px;
@@ -712,6 +654,7 @@
             padding: 2rem;
             box-shadow: var(--shadow);
             margin-top: 2rem;
+            /* Añadir espacio adicional en la parte inferior para el carrito */
             padding-bottom: 100px !important;
         }
 
@@ -728,6 +671,40 @@
             color: var(--text);
         }
 
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* === TARJETAS DE FORMULARIO - NUEVO DISEÑO === */
         .form-card {
             background: white;
             border: 1px solid #E2E8F0;
@@ -825,21 +802,12 @@
             box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
         }
 
-        /* MEJORA: Botones del formulario responsivos */
-        .form-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
         .form-btn {
             flex: 1;
-            min-width: 200px;
-            padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);
+            min-width: 120px;
+            padding: clamp(10px, 2.5vw, 14px) clamp(14px, 3.5vw, 20px);
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 700;
             font-size: clamp(14px, 3.5vw, 16px);
             cursor: pointer;
@@ -848,7 +816,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 50px;
+            min-height: 44px;
         }
 
         .form-btn-back {
@@ -1260,7 +1228,6 @@
             
             .form-actions {
                 flex-direction: column;
-                align-items: stretch;
             }
             
             .form-input-group {
@@ -1348,11 +1315,6 @@
             .form-input {
                 padding-left: 40px !important;
             }
-
-            .header-info {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
         }
 
         /* === ANIMACIONES === */
@@ -1407,53 +1369,10 @@
         .order-summary-form {
             display: none !important;
         }
-
-        /* === NUEVOS ESTILOS PARA EL DISEÑO MEJORADO === */
-        .service-card {
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            border: 2px solid transparent;
-            position: relative;
-        }
-
-        .service-card.selected {
-            border-color: var(--secondary);
-            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3), 0 2px 4px -2px rgba(16, 185, 129, 0.3);
-        }
-
-        .service-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #D1D5DB;
-            border-radius: 0.5rem;
-            margin-top: 0.25rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: var(--primary-light);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-
-        /* Esconder las flechas de los number inputs */
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
     </style>
 </head>
 <body>
-    <!-- Header Mejorado -->
+    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -1462,15 +1381,6 @@
                     <div class="logo-text">
                         <h1>TeEchoUnaMano TUM</h1>
                         <p>Servicios de Limpieza Profesional</p>
-                    </div>
-                </div>
-                <div class="header-info">
-                    <div class="people-count">
-                        <span id="header-people-count">1 Persona</span>
-                    </div>
-                    <div class="header-total">
-                        <span>Total:</span>
-                        <span id="header-total-cost">10€</span>
                     </div>
                 </div>
                 <a href="https://tumgo.blogspot.com/" target="_blank" rel="noopener noreferrer" class="header-link">
@@ -1483,7 +1393,8 @@
     <main class="container">
         <!-- Hero Section -->
         <section class="hero-section">
-            <h1 class="hero-title">Presupuesto TUM</h1>
+            <h1 class="hero-title">Presupuesto TUM </h1>
+            <!-- <p class="hero-subtitle">Selecciona solo los servicios que necesitas y personaliza sus precios</p>-->
         </section>
 
         <!-- Constructor Modular -->
@@ -1510,22 +1421,12 @@
                                     <input type="number" class="price-input" id="salon-price" value="10" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="cocina">
                                 <div class="option-name">🍳 Cocina</div>
                                 <div class="price-input-container">
                                     <input type="number" class="price-input" id="cocina-price" value="10" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
-                                </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -1588,22 +1489,12 @@
                                     <input type="number" class="price-input" id="pasillo-price" value="5" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="platos">
                                 <div class="option-name">🍽️ Fregar Platos</div>
                                 <div class="price-input-container">
                                     <input type="number" class="price-input" id="platos-price" value="5" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
-                                </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </div>
                             <div class="module-option" data-service="mamparas">
@@ -1612,22 +1503,12 @@
                                     <input type="number" class="price-input" id="mamparas-price" value="5" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="basura">
                                 <div class="option-name">🗑️ Basura</div>
                                 <div class="price-input-container">
                                     <input type="number" class="price-input" id="basura-price" value="5" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
-                                </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -1655,11 +1536,6 @@
                                     <input type="number" class="price-input" id="horno-price" value="20" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="nevera">
                                 <div class="option-name">❄️ Nevera</div>
@@ -1667,22 +1543,12 @@
                                     <input type="number" class="price-input" id="nevera-price" value="20" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="campana">
                                 <div class="option-name">💨 Campana Cocina</div>
                                 <div class="price-input-container">
                                     <input type="number" class="price-input" id="campana-price" value="20" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
-                                </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -1873,22 +1739,12 @@
                                     <input type="number" class="price-input" id="escalera-price" value="10" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="terraza">
                                 <div class="option-name">☀️ Terraza</div>
                                 <div class="price-input-container">
                                     <input type="number" class="price-input" id="terraza-price" value="15" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
-                                </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </div>
                             <div class="module-option" data-service="lavanderia">
@@ -1897,22 +1753,12 @@
                                     <input type="number" class="price-input" id="lavanderia-price" value="12" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
                                 </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
                             </div>
                             <div class="module-option" data-service="organizacion">
                                 <div class="option-name">📦 Organización</div>
                                 <div class="price-input-container">
                                     <input type="number" class="price-input" id="organizacion-price" value="20" min="0" step="0.5">
                                     <span class="price-symbol">€</span>
-                                </div>
-                                <div class="check-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -1989,8 +1835,7 @@
                     
                     <div class="form-input-wrapper">
                         <div class="form-input-icon">✍️</div>
-                        <!-- CORRECCIÓN: Eliminado el atributo required -->
-                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" style="padding-left: 40px;">
+                        <input type="text" id="nombre" class="form-input" placeholder="Tu nombre completo" required style="padding-left: 40px;">
                         <div class="error-message" id="errorNombre">Por favor, ingresa tu nombre completo</div>
                     </div>
                 </div>
@@ -2003,30 +1848,26 @@
                     
                     <div class="form-input-wrapper">
                         <div class="form-input-icon">📍</div>
-                        <!-- CORRECCIÓN: Eliminado el atributo required -->
-                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)" style="padding-left: 40px;">
+                        <input type="text" id="calle" class="form-input" placeholder="Calle y número (Ej: Calle Mayor, 123)" required style="padding-left: 40px;">
                         <div class="error-message" id="errorCalle">Por favor, ingresa la calle y número</div>
                     </div>
 
                     <div class="form-input-group">
                         <div class="form-input-wrapper">
                             <div class="form-input-icon">🚪</div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="text" id="portal" class="form-input" placeholder="Portal" style="padding-left: 40px;">
+                            <input type="text" id="portal" class="form-input" placeholder="Portal" required style="padding-left: 40px;">
                             <div class="error-message" id="errorPortal">Requerido</div>
                         </div>
 
                         <div class="form-input-wrapper">
                             <div class="form-input-icon">🔢</div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="text" id="piso" class="form-input" placeholder="Piso" style="padding-left: 40px;">
+                            <input type="text" id="piso" class="form-input" placeholder="Piso" required style="padding-left: 40px;">
                             <div class="error-message" id="errorPiso">Requerido</div>
                         </div>
 
                         <div class="form-input-wrapper">
                             <div class="form-input-icon">🚪</div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="text" id="puerta" class="form-input" placeholder="Puerta" style="padding-left: 40px;">
+                            <input type="text" id="puerta" class="form-input" placeholder="Puerta" required style="padding-left: 40px;">
                             <div class="error-message" id="errorPuerta">Requerido</div>
                         </div>
                     </div>
@@ -2054,8 +1895,7 @@
                                 <span>📆</span>
                                 <span>Primera opción</span>
                             </div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="date" id="fecha1">
+                            <input type="date" id="fecha1" required>
                             <div class="error-message" id="errorFecha1">Selecciona la primera fecha</div>
                         </div>
 
@@ -2064,14 +1904,12 @@
                                 <span>📆</span>
                                 <span>Segunda opción</span>
                             </div>
-                            <!-- CORRECCIÓN: Eliminado el atributo required -->
-                            <input type="date" id="fecha2">
+                            <input type="date" id="fecha2" required>
                             <div class="error-message" id="errorFecha2">Selecciona la segunda fecha</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- MEJORA: Botones del formulario responsivos -->
                 <div class="form-actions">
                     <button type="button" id="back-to-constructor" class="form-btn form-btn-back">
                         <span>←</span>
@@ -2291,10 +2129,6 @@
         const electrodomesticosSubtotalDisplay = document.getElementById('electrodomesticos-subtotal');
         const windowsSubtotalDisplay = document.getElementById('windows-subtotal');
         const specialSubtotalDisplay = document.getElementById('special-subtotal');
-
-        // Elementos del header mejorado
-        const headerTotalCostDisplay = document.getElementById('header-total-cost');
-        const headerPeopleCountDisplay = document.getElementById('header-people-count');
 
         const proceedButton = document.getElementById('proceed-to-form');
         const resetButton = document.getElementById('reset-order');
@@ -2773,13 +2607,6 @@
             updateTotalCost();
             updateCostPerPerson();
             updateCategorySubtotals();
-            updateHeaderInfo();
-        }
-
-        // Actualizar información del header
-        function updateHeaderInfo() {
-            headerTotalCostDisplay.textContent = `${state.totalCost}€`;
-            headerPeopleCountDisplay.textContent = `${state.roommatesCount} ${state.roommatesCount === 1 ? 'Persona' : 'Personas'}`;
         }
 
         // Actualizar subtotales de categorías
@@ -3185,11 +3012,11 @@
             });
         }
 
-        // Manejar envío del formulario - CORRECCIÓN: Eliminada la validación
+        // Manejar envío del formulario
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            // CORRECCIÓN: Ya no hay validación de campos requeridos
+            // Validar formulario
             const nombre = document.getElementById('nombre').value.trim();
             const calle = document.getElementById('calle').value.trim();
             const portal = document.getElementById('portal').value.trim();
@@ -3198,13 +3025,40 @@
             const fecha1 = document.getElementById('fecha1').value;
             const fecha2 = document.getElementById('fecha2').value;
 
+            let hasError = false;
+
+            const validateField = (fieldId, errorId, value) => {
+                const field = document.getElementById(fieldId);
+                const error = document.getElementById(errorId);
+                if (!value) {
+                    field.classList.add('error');
+                    error.classList.add('show');
+                    hasError = true;
+                } else {
+                    field.classList.remove('error');
+                    error.classList.remove('show');
+                }
+            };
+
+            validateField('nombre', 'errorNombre', nombre);
+            validateField('calle', 'errorCalle', calle);
+            validateField('portal', 'errorPortal', portal);
+            validateField('piso', 'errorPiso', piso);
+            validateField('puerta', 'errorPuerta', puerta);
+            validateField('fecha1', 'errorFecha1', fecha1);
+            validateField('fecha2', 'errorFecha2', fecha2);
+
+            if (hasError) {
+                return;
+            }
+
             const direccion = `${calle}, Portal ${portal}, Piso ${piso}, Puerta ${puerta}`;
 
             // Actualizar el modal de resumen final
-            document.getElementById('final-nombre').textContent = nombre || 'No proporcionado';
-            document.getElementById('final-direccion').textContent = direccion || 'No proporcionada';
-            document.getElementById('final-fecha1').textContent = fecha1 ? formatDate(fecha1) : 'No seleccionada';
-            document.getElementById('final-fecha2').textContent = fecha2 ? formatDate(fecha2) : 'No seleccionada';
+            document.getElementById('final-nombre').textContent = nombre;
+            document.getElementById('final-direccion').textContent = direccion;
+            document.getElementById('final-fecha1').textContent = formatDate(fecha1);
+            document.getElementById('final-fecha2').textContent = formatDate(fecha2);
             document.getElementById('final-total-cost').textContent = `${state.totalCost} €`;
             document.getElementById('final-cost-per-person').textContent = `${state.costPerPerson.toFixed(2)} €`;
             document.getElementById('final-roommates-count').textContent = state.roommatesCount;
@@ -3367,12 +3221,12 @@
             let message = `PPTO. SERVICIO DE LIMPIEZA\n\n`;
             
             message += `INFORMACIÓN CLIENTE\n`;
-            message += `• Nombre: ${nombre || 'No proporcionado'}\n`;
-            message += `• Dirección: ${direccion || 'No proporcionada'}\n\n`;
+            message += `• Nombre: ${nombre}\n`;
+            message += `• Dirección: ${direccion}\n\n`;
             
             message += `FECHAS PARA VISITA\n`;
-            message += `• Primera opción: ${fecha1 ? formatDate(fecha1) : 'No seleccionada'}\n`;
-            message += `• Segunda opción: ${fecha2 ? formatDate(fecha2) : 'No seleccionada'}\n\n`;
+            message += `• Primera opción: ${formatDate(fecha1)}\n`;
+            message += `• Segunda opción: ${formatDate(fecha2)}\n\n`;
             
             message += `SERVICIOS SOLICITADOS\n`;
             
